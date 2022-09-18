@@ -15,8 +15,9 @@ namespace CMPG223_Booking.Classes
         public string email;
         public int type; // 0=Admin 1=Traner 2=Client
         
-        public void createUser(string name, string surname, string password, string email, int type)
+        public void createUser(string uName, string uSurname, string uPassword, string uEmail, int uType)
         {
+
             try
             {
                 
@@ -48,7 +49,7 @@ namespace CMPG223_Booking.Classes
 
             }
         }
-        public void createClient()
+        public void createClient(string cName, string cSurname, string cPassword, string cEmail, int cType)
         {
             try
             {

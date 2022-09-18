@@ -54,27 +54,13 @@ namespace CMPG223_Booking
             events.EventStartTime = DateTime.Parse(cmbBxEventStartTime.Text);
             events.EventEndTime = DateTime.Parse(cmbBxEventEndTime.Text);
 
-            
+           
 
 
         }
 
-        public void createUser()
-        {
-            UserClass admin = new UserClass();
-            admin.name = txtBxEdName.Text;
-            admin.email = txtBxEdEmail.Text;
-            admin.surname = txtBxEdSurname.Text;
-            admin.password = txtBxEdPassword.Text;
-            try
-            {
 
-            }
-            catch
-            {
-
-            }
-        }
+       
         public void updateUser()
         {
             try

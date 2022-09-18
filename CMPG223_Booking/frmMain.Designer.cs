@@ -134,6 +134,7 @@
             this.lblBookComments = new System.Windows.Forms.Label();
             this.cmbBxSlctBooking = new System.Windows.Forms.ComboBox();
             this.lblSlctBooking = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblBookingName = new System.Windows.Forms.Label();
             this.txtBxBookingID = new System.Windows.Forms.TextBox();
             this.lblBookingID = new System.Windows.Forms.Label();
@@ -151,7 +152,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tabCtrlMain.SuspendLayout();
             this.tabPgLogin.SuspendLayout();
@@ -178,7 +178,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(997, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(997, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -255,12 +255,12 @@
             this.tabCtrlMain.Controls.Add(this.tabPgReporting);
             this.tabCtrlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCtrlMain.HotTrack = true;
-            this.tabCtrlMain.Location = new System.Drawing.Point(0, 30);
+            this.tabCtrlMain.Location = new System.Drawing.Point(0, 28);
             this.tabCtrlMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabCtrlMain.Name = "tabCtrlMain";
             this.tabCtrlMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabCtrlMain.SelectedIndex = 0;
-            this.tabCtrlMain.Size = new System.Drawing.Size(997, 576);
+            this.tabCtrlMain.Size = new System.Drawing.Size(997, 578);
             this.tabCtrlMain.TabIndex = 1;
             // 
             // tabPgLogin
@@ -1310,6 +1310,13 @@
             this.lblSlctBooking.TabIndex = 24;
             this.lblSlctBooking.Text = "Select Booking";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(156, 109);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(266, 22);
+            this.textBox1.TabIndex = 23;
+            // 
             // lblBookingName
             // 
             this.lblBookingName.AutoSize = true;
@@ -1342,7 +1349,7 @@
             this.tabPgReporting.Margin = new System.Windows.Forms.Padding(4);
             this.tabPgReporting.Name = "tabPgReporting";
             this.tabPgReporting.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPgReporting.Size = new System.Drawing.Size(989, 547);
+            this.tabPgReporting.Size = new System.Drawing.Size(989, 549);
             this.tabPgReporting.TabIndex = 5;
             this.tabPgReporting.Text = "Reporting";
             this.tabPgReporting.UseVisualStyleBackColor = true;
@@ -1475,13 +1482,6 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Admin/Trainer";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(156, 109);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(266, 22);
-            this.textBox1.TabIndex = 23;
             // 
             // frmMain
             // 

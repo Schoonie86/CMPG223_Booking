@@ -178,7 +178,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(997, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1246, 38);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -188,7 +188,7 @@
             this.loginToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 34);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loginToolStripMenuItem
@@ -212,37 +212,37 @@
             this.bookingToolStripMenuItem,
             this.reprotingToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 34);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.userToolStripMenuItem.Text = "User";
             // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.clientToolStripMenuItem.Text = "Client";
             // 
             // eventToolStripMenuItem
             // 
             this.eventToolStripMenuItem.Name = "eventToolStripMenuItem";
-            this.eventToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.eventToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.eventToolStripMenuItem.Text = "Event";
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // reprotingToolStripMenuItem
             // 
             this.reprotingToolStripMenuItem.Name = "reprotingToolStripMenuItem";
-            this.reprotingToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.reprotingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.reprotingToolStripMenuItem.Text = "Reproting";
             // 
             // tabCtrlMain
@@ -255,12 +255,12 @@
             this.tabCtrlMain.Controls.Add(this.tabPgReporting);
             this.tabCtrlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCtrlMain.HotTrack = true;
-            this.tabCtrlMain.Location = new System.Drawing.Point(0, 28);
+            this.tabCtrlMain.Location = new System.Drawing.Point(0, 48);
             this.tabCtrlMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabCtrlMain.Name = "tabCtrlMain";
             this.tabCtrlMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabCtrlMain.SelectedIndex = 0;
-            this.tabCtrlMain.Size = new System.Drawing.Size(997, 578);
+            this.tabCtrlMain.Size = new System.Drawing.Size(1246, 710);
             this.tabCtrlMain.TabIndex = 1;
             // 
             // tabPgLogin
@@ -1122,7 +1122,7 @@
             this.tabPgBooking.Margin = new System.Windows.Forms.Padding(4);
             this.tabPgBooking.Name = "tabPgBooking";
             this.tabPgBooking.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPgBooking.Size = new System.Drawing.Size(989, 549);
+            this.tabPgBooking.Size = new System.Drawing.Size(1238, 681);
             this.tabPgBooking.TabIndex = 4;
             this.tabPgBooking.Text = "Booking";
             this.tabPgBooking.UseVisualStyleBackColor = true;

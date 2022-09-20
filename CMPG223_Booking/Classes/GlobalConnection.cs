@@ -10,11 +10,11 @@ namespace CMPG223_Booking.Classes
 {
     internal class GlobalConnection
     {
-        public SqlConnection sqlGlbConnection;
+        public SqlConnection sqlGlbConn;
 
-        public void glbConnection()
+        public void glbConn()
         {
-            sqlGlbConnection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\P32262345\NWUNextcloud\Studies\CMPG\2nd_Year_2st_Year\CMPG_223_(Systems_Analysis_and_Design_II)\Booking\CMPG223_Booking\CMPG223_Booking\CMPG223_Booking\db_Bookings.mdf;Integrated Security=True");
+            sqlGlbConn = new SqlConnection(@"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\P32262345\NWUNextcloud\Studies\CMPG\2nd_Year_2st_Year\CMPG_223_(Systems_Analysis_and_Design_II)\Booking\CMPG223_Booking\Groupe8_Booking_DataBase\dbBookings.mdf; Integrated Security = True");
         }
     }
 }

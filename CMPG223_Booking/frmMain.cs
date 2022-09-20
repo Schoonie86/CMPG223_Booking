@@ -14,15 +14,20 @@ namespace CMPG223_Booking
 {
     public partial class frmMain : Form
     {
-        SqlCommand sqlCommand;
-        SqlDataAdapter sqlDataAdapter;
-        DataSet ds;
-        SqlDataReader sqlDataReader;
-        GlobalConnection sqlConnection;
+        public SqlCommand sqlComm;
+        public SqlDataAdapter sqlDatAdap;
+        public DataSet ds;
+        public SqlDataReader sqlDatRead;
+        GlobalConnection sqlGlbConn;
  
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void Login()
+        {
+           
         }
 
         public void Main(string[] arg)
@@ -53,9 +58,6 @@ namespace CMPG223_Booking
             events.EventEndDate = dtPckrEventEndDate.MaxDate;
             events.EventStartTime = DateTime.Parse(cmbBxEventStartTime.Text);
             events.EventEndTime = DateTime.Parse(cmbBxEventEndTime.Text);
-
-           
-
 
         }
 

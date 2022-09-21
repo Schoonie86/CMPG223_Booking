@@ -178,7 +178,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1246, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(997, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -188,7 +188,7 @@
             this.loginToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 34);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loginToolStripMenuItem
@@ -212,37 +212,37 @@
             this.bookingToolStripMenuItem,
             this.reprotingToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 34);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.userToolStripMenuItem.Text = "User";
             // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.clientToolStripMenuItem.Text = "Client";
             // 
             // eventToolStripMenuItem
             // 
             this.eventToolStripMenuItem.Name = "eventToolStripMenuItem";
-            this.eventToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.eventToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.eventToolStripMenuItem.Text = "Event";
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.bookingToolStripMenuItem.Text = "Booking";
             // 
             // reprotingToolStripMenuItem
             // 
             this.reprotingToolStripMenuItem.Name = "reprotingToolStripMenuItem";
-            this.reprotingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.reprotingToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.reprotingToolStripMenuItem.Text = "Reproting";
             // 
             // tabCtrlMain
@@ -255,12 +255,12 @@
             this.tabCtrlMain.Controls.Add(this.tabPgReporting);
             this.tabCtrlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCtrlMain.HotTrack = true;
-            this.tabCtrlMain.Location = new System.Drawing.Point(0, 48);
+            this.tabCtrlMain.Location = new System.Drawing.Point(0, 28);
             this.tabCtrlMain.Margin = new System.Windows.Forms.Padding(4);
             this.tabCtrlMain.Name = "tabCtrlMain";
             this.tabCtrlMain.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabCtrlMain.SelectedIndex = 0;
-            this.tabCtrlMain.Size = new System.Drawing.Size(1246, 710);
+            this.tabCtrlMain.Size = new System.Drawing.Size(997, 578);
             this.tabCtrlMain.TabIndex = 1;
             // 
             // tabPgLogin
@@ -510,6 +510,7 @@
             this.cmbBxEdSlctUser.Name = "cmbBxEdSlctUser";
             this.cmbBxEdSlctUser.Size = new System.Drawing.Size(285, 24);
             this.cmbBxEdSlctUser.TabIndex = 16;
+            this.cmbBxEdSlctUser.SelectedIndexChanged += new System.EventHandler(this.cmbBxEdSlctUser_SelectedIndexChanged);
             // 
             // btnEdDelete
             // 
@@ -530,6 +531,7 @@
             this.btnEdNewUserSubmit.TabIndex = 13;
             this.btnEdNewUserSubmit.Text = "Submit";
             this.btnEdNewUserSubmit.UseVisualStyleBackColor = true;
+            this.btnEdNewUserSubmit.Click += new System.EventHandler(this.btnEdNewUserSubmit_Click);
             // 
             // btnEdCancel
             // 
@@ -597,9 +599,11 @@
             // 
             // txtBxUserID
             // 
+            this.txtBxUserID.Enabled = false;
             this.txtBxUserID.Location = new System.Drawing.Point(99, 64);
             this.txtBxUserID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBxUserID.Name = "txtBxUserID";
+            this.txtBxUserID.ReadOnly = true;
             this.txtBxUserID.Size = new System.Drawing.Size(285, 22);
             this.txtBxUserID.TabIndex = 3;
             // 
@@ -653,7 +657,7 @@
             this.tabPgClient.Margin = new System.Windows.Forms.Padding(4);
             this.tabPgClient.Name = "tabPgClient";
             this.tabPgClient.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPgClient.Size = new System.Drawing.Size(989, 549);
+            this.tabPgClient.Size = new System.Drawing.Size(989, 547);
             this.tabPgClient.TabIndex = 2;
             this.tabPgClient.Text = "Client";
             this.tabPgClient.UseVisualStyleBackColor = true;
@@ -695,6 +699,7 @@
             this.cmbBxEdSlctClient.Name = "cmbBxEdSlctClient";
             this.cmbBxEdSlctClient.Size = new System.Drawing.Size(285, 24);
             this.cmbBxEdSlctClient.TabIndex = 15;
+            this.cmbBxEdSlctClient.SelectedIndexChanged += new System.EventHandler(this.cmbBxEdSlctClient_SelectedIndexChanged);
             // 
             // btnEdClientDelete
             // 
@@ -715,6 +720,7 @@
             this.btnEdNewClientSubmit.TabIndex = 13;
             this.btnEdNewClientSubmit.Text = "Submit";
             this.btnEdNewClientSubmit.UseVisualStyleBackColor = true;
+            this.btnEdNewClientSubmit.Click += new System.EventHandler(this.btnEdNewClientSubmit_Click);
             // 
             // btnEdClientCancel
             // 
@@ -838,7 +844,7 @@
             this.tabPgEvent.Margin = new System.Windows.Forms.Padding(4);
             this.tabPgEvent.Name = "tabPgEvent";
             this.tabPgEvent.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPgEvent.Size = new System.Drawing.Size(989, 549);
+            this.tabPgEvent.Size = new System.Drawing.Size(989, 547);
             this.tabPgEvent.TabIndex = 3;
             this.tabPgEvent.Text = "Event";
             this.tabPgEvent.UseVisualStyleBackColor = true;
@@ -875,7 +881,7 @@
             this.grpBxEvent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.grpBxEvent.Name = "grpBxEvent";
             this.grpBxEvent.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.grpBxEvent.Size = new System.Drawing.Size(981, 541);
+            this.grpBxEvent.Size = new System.Drawing.Size(981, 539);
             this.grpBxEvent.TabIndex = 0;
             this.grpBxEvent.TabStop = false;
             this.grpBxEvent.Text = "Events";
@@ -1122,7 +1128,7 @@
             this.tabPgBooking.Margin = new System.Windows.Forms.Padding(4);
             this.tabPgBooking.Name = "tabPgBooking";
             this.tabPgBooking.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPgBooking.Size = new System.Drawing.Size(1238, 681);
+            this.tabPgBooking.Size = new System.Drawing.Size(989, 547);
             this.tabPgBooking.TabIndex = 4;
             this.tabPgBooking.Text = "Booking";
             this.tabPgBooking.UseVisualStyleBackColor = true;
@@ -1349,7 +1355,7 @@
             this.tabPgReporting.Margin = new System.Windows.Forms.Padding(4);
             this.tabPgReporting.Name = "tabPgReporting";
             this.tabPgReporting.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPgReporting.Size = new System.Drawing.Size(989, 549);
+            this.tabPgReporting.Size = new System.Drawing.Size(989, 547);
             this.tabPgReporting.TabIndex = 5;
             this.tabPgReporting.Text = "Reporting";
             this.tabPgReporting.UseVisualStyleBackColor = true;
@@ -1498,6 +1504,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Booking System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabCtrlMain.ResumeLayout(false);

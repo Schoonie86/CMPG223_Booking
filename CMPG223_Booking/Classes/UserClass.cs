@@ -12,19 +12,41 @@ namespace CMPG223_Booking.Classes
    
     public class UserClass
     { 
-        public string name;
-        public string surname;
-        public string password;
-        public string email;
-        public int type; // 0=Admin/Traner 1=Client
+        string name;
+        string lastName;
+        string password;
+        string email;
+        int userType;
+        int userID;
+        int clientID;
+        
+        
         SqlCommand sqlComm;
         SqlDataAdapter sqlDataAdapter;
         DataSet ds;
         SqlDataReader sqlDataReader;
         GlobalConnection sqlConn;
         
+       public UserClass(string uName, string uLastName, string uPassword, string uEmail)
+        {
+            try
+            {
+                name = uName;
+                //uName = name;
+                lastName = uLastName;
+                //uLastName = lastName;
+                password = uPassword;
+                //uPassword = password;
+                email = uEmail;
+                //uEmail = email;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        public void createUser(string uName, string uSurname, string uPassword, string uEmail)
+        public void CreateUser()
         {
             try
             {
@@ -32,17 +54,18 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"INSERT INTO tbUser(Name, LastSuname, Password, Email) VALUES ({uName},{uSurname},HASHBYTES('SHA2_512',{uPassword}),{uEmail})", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"INSERT INTO tbUser (Name, LastName, Password, Email) VALUES ('{name}','{lastName}',HASHBYTES('SHA2_512', '{password}'),'{email}')", sqlConn.sqlGlbConn);
                 sqlDataAdapter.InsertCommand = sqlComm;
                 sqlDataAdapter.InsertCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You Successfully added a new user.");
             }
             catch(SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        public void updateUser(string uName, string uSurname, string uPassword, string uEmail, int uUserID)
+        public void UpdateUser(string uName, string uSurname, string uPassword, string uEmail, int uUserID)
         {
             try
             {
@@ -60,7 +83,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void deleteUser(string uUserID)
+        public void DeleteUser(string uUserID)
         {
             try
             {
@@ -78,7 +101,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void createClient(string cName, string cSurname, string cPassword, string cEmail)
+        public void CreateClient(string cName, string cSurname, string cPassword, string cEmail)
         {
             try
             {
@@ -96,7 +119,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void updateClient(string cName, string cSurname, string cPassword, string cEmail, int cClientID)
+        public void UpdateClient(string cName, string cSurname, string cPassword, string cEmail, int cClientID)
         {
             try
             {
@@ -114,7 +137,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void deleteClient(int cClientID)
+        public void DeleteClient(int cClientID)
         {
             try
             {

@@ -17,6 +17,7 @@ namespace CMPG223_Booking
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());
+
         }
     }
 }

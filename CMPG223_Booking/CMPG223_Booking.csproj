@@ -68,6 +68,18 @@
     <Compile Include="Classes\GlobalConnection.cs" />
     <Compile Include="Classes\ReportingClass.cs" />
     <Compile Include="Classes\UserClass.cs" />
+    <Compile Include="frmClientSignUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientSignUp.Designer.cs">
+      <DependentUpon>frmClientSignUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +88,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmClientSignUp.resx">
+      <DependentUpon>frmClientSignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>

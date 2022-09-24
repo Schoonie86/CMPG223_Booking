@@ -11,14 +11,14 @@ namespace CMPG223_Booking.Classes
 {
    
     public class UserClass
-    { 
-        string name;
-        string lastName;
-        string password;
-        string email;
-        int userType;
-        int userID;
-        int clientID;
+    {     
+        public int ID;
+        public string name;
+        public string lastName;
+        public string password;
+        public string email;
+        public int userType;
+        public int clientID;
         
         
         SqlCommand sqlComm;
@@ -26,19 +26,19 @@ namespace CMPG223_Booking.Classes
         DataSet ds;
         SqlDataReader sqlDataReader;
         GlobalConnection sqlConn;
+        DataTable dt;
         
-       public UserClass(string uName, string uLastName, string uPassword, string uEmail)
+        
+
+       public UserClass()
         {
             try
             {
-                name = uName;
-                //uName = name;
-                lastName = uLastName;
-                //uLastName = lastName;
-                password = uPassword;
-                //uPassword = password;
-                email = uEmail;
-                //uEmail = email;
+                ID = 0;
+                name = "";
+                lastName = "";
+                password = "";
+                email = "";
             }
             catch(Exception ex)
             {
@@ -46,6 +46,63 @@ namespace CMPG223_Booking.Classes
             }
         }
 
+        public void UserValidation(int logUserID, string logUserPass)
+        {
+            try
+            {
+                sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
+                sqlConn.sqlGlbConn.Open();
+                sqlDataAdapter = new SqlDataAdapter();
+                sqlComm = new SqlCommand($"SELECT UserID, Password FROM tbUser WHERE UserID={logUserID} and Password = HASHBYTES('SHA2_512','{logUserPass}')");
+                sqlDataAdapter.SelectCommand = sqlComm;
+                sqlDataAdapter.SelectCommand.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDataAdapter.Fill(dt);
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }   
+            if (dt.Rows.Count == 1)
+            {
+                frmMain frmMain = new frmMain();
+                frmMain.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password");
+            }
+        }
+        public void ClientValidation(int logClientID, string logClientPass)
+        {
+            try
+            {
+                sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
+                sqlConn.sqlGlbConn.Open();
+                sqlDataAdapter = new SqlDataAdapter();
+                sqlComm = new SqlCommand($"SELECT ClientID, Password FROM tbClient WHERE ClientID='{logClientID}' and Password = HASHBYTES('SHA2_512','{logClientPass}')");
+                sqlDataAdapter.SelectCommand = sqlComm;
+                sqlDataAdapter.SelectCommand.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDataAdapter.Fill(dt);
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (dt.Rows.Count == 1)
+            {
+                frmMain frmMain = new frmMain();
+                frmMain.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username or Password");
+            }
+        }
         public void CreateUser()
         {
             try
@@ -65,7 +122,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void UpdateUser(string uName, string uSurname, string uPassword, string uEmail, int uUserID)
+        public void UpdateUser(int userID)
         {
             try
             {
@@ -73,17 +130,18 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"UPDATE tbUser SET Name={uName},LastSuname={uSurname},Password=HASHBYTES('SHA2_512',{uPassword}),Email={uEmail} WHERE UserID={uUserID}", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"UPDATE tbUser SET Name='{name}',LastName='{lastName}',Password = HASHBYTES('SHA2_512','{password}'),Email='{email}' WHERE UserID={userID}", sqlConn.sqlGlbConn);
                 sqlDataAdapter.UpdateCommand = sqlComm;
                 sqlDataAdapter.UpdateCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You Successfully updated the user details.");
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        public void DeleteUser(string uUserID)
+        public void DeleteUser()
         {
             try
             {
@@ -91,17 +149,18 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"DELETE FROM tbUser WHERE UserID={uUserID}", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"DELETE FROM tbUser WHERE UserID={ID}", sqlConn.sqlGlbConn);
                 sqlDataAdapter.DeleteCommand = sqlComm;
                 sqlDataAdapter.DeleteCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You have successfully Deleted the User");
             }
             catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        public void CreateClient(string cName, string cSurname, string cPassword, string cEmail)
+        public void CreateClient()
         {
             try
             {
@@ -109,7 +168,7 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"INSERT INTO tbClient(Name, LastSuname, Password, Email) VALUES ({cName},{cSurname},HASHBYTES('SHA2_512',{cPassword}),{cEmail})", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"INSERT INTO tbClient(Name, LastName, Password, Email) VALUES ('{name}','{lastName}',HASHBYTES('SHA2_512','{password}'),'{email}')", sqlConn.sqlGlbConn);
                 sqlDataAdapter.InsertCommand = sqlComm;
                 sqlDataAdapter.InsertCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
@@ -119,7 +178,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void UpdateClient(string cName, string cSurname, string cPassword, string cEmail, int cClientID)
+        public void UpdateClient(int clientID)
         {
             try
             {
@@ -127,7 +186,7 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"UPDATE tbUser SET Name={cName},LastSuname={cSurname},Password=HASHBYTES('SHA2_512',{cPassword}),Email={cEmail} WHERE UserID={cClientID}", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"UPDATE tbUser SET Name={name},LastName={lastName},Password=HASHBYTES('SHA2_512',{password}),Email={email} WHERE UserID={clientID}", sqlConn.sqlGlbConn);
                 sqlDataAdapter.UpdateCommand = sqlComm;
                 sqlDataAdapter.UpdateCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
@@ -137,7 +196,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void DeleteClient(int cClientID)
+        public void DeleteClient()
         {
             try
             {
@@ -145,7 +204,7 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"DELETE FROM tbClient WHERE ClientID={cClientID}", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"DELETE FROM tbClient WHERE ClientID={clientID}", sqlConn.sqlGlbConn);
                 sqlDataAdapter.DeleteCommand = sqlComm;
                 sqlDataAdapter.DeleteCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();

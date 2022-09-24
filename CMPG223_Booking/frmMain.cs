@@ -16,7 +16,6 @@ namespace CMPG223_Booking
     {
         SqlCommand sqlComm;
         SqlDataAdapter sqlDatAdap;
-        DataSet ds;
         SqlDataReader sqlDatRead;
         GlobalConnection sqlConn;
         DataTable dt;
@@ -30,11 +29,6 @@ namespace CMPG223_Booking
         {
 
         }
-        private void Login()
-        {
-           
-        }
-
         private void PopulateCmbo()
         {
             sqlConn = new GlobalConnection();
@@ -90,45 +84,11 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
             PopulateCmbo();
-        
+            
         }
-        private void btnEdNewUserSubmit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbBxEdSlctUser.SelectedIndex == -1)
-                {
-                    UserClass adminObj = new UserClass(txtBxEdName.Text.ToString(),txtBxEdSurname.Text.ToString(), txtBxEdPassword.Text.ToString(), txtBxEdEmail.Text.ToString());
-                    adminObj.CreateUser();
-                    txtBxEdName.Clear();
-                    txtBxEdSurname.Clear();
-                    txtBxEdPassword.Clear();
-                    txtBxEdEmail.Clear();
-                    PopulateCmbo();
-                }
-                else
-                {
-                    MessageBox.Show("Sellected user Alrady exist");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void btnEdNewClientSubmit_Click(object sender, EventArgs e)
-        {
-            UserClass clientObj = new UserClass(txtBxEdClientName.Text, txtBxEdClientSurname.Text, txtBxEdClientPassword.Text, txtBxEdClientEmail.Text);
-            clientObj.CreateClient(txtBxEdClientName.Text, txtBxEdClientSurname.Text, txtBxEdClientPassword.Text, txtBxEdClientEmail.Text);
-        }
-
         private void cmbBxEdSlctUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -152,7 +112,103 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnEdNewUserSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbBxEdSlctUser.SelectedIndex == -1)
+                {
+                    UserClass userAddObj = new UserClass();
+                    userAddObj.name = txtBxEdName.Text.Trim();
+                    userAddObj.lastName = txtBxEdSurname.Text.Trim();
+                    userAddObj.email = txtBxEdEmail.Text.Trim();
+                    userAddObj.password = txtBxEdPassword.Text.Trim();
+                    userAddObj.CreateUser();
+                    txtBxUserID.Clear();
+                    txtBxEdName.Clear();
+                    txtBxEdSurname.Clear();
+                    txtBxEdPassword.Clear();
+                    txtBxEdEmail.Clear();
+                    PopulateCmbo();
+                }
+                else
+                {
+                    MessageBox.Show("Sellected user alrady exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
+        }
+        private void btnEdUpdate_Click(object sender, EventArgs e)
+        {
+            if (cmbBxEdSlctUser.SelectedIndex >= 0)
+            {
+                int index = cmbBxEdSlctUser.SelectedIndex;
+                try
+                {
+                    UserClass userUpObj = new UserClass();
+                    userUpObj.ID = Convert.ToInt32(txtBxUserID.Text);
+                    userUpObj.name = txtBxEdName.Text.Trim();
+                    userUpObj.lastName = txtBxEdSurname.Text.Trim();
+                    userUpObj.email = txtBxEdEmail.Text.Trim();
+                    userUpObj.password = txtBxEdPassword.Text.Trim();
+                    userUpObj.UpdateUser(userUpObj.ID);
+                    txtBxUserID.Clear();
+                    txtBxEdName.Clear();
+                    txtBxEdSurname.Clear();
+                    txtBxEdPassword.Clear();
+                    txtBxEdEmail.Clear();
+                    PopulateCmbo();
+                }
+                catch(SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                cmbBxEdSlctUser.SelectedIndex = index;
+            }
+            else
+            {
+                MessageBox.Show("Please select existing user to update. To create a new account please use the submit butten.");
+            }
+        }
+        private void btnEdDelete_Click(object sender, EventArgs e)
+        {
+            if (cmbBxEdSlctUser.SelectedIndex >= 0)
+            {
+                UserClass delUObj = new UserClass();
+                if (txtBxUserID.Text != null)
+                {
+                    delUObj.ID = Convert.ToInt32(txtBxUserID.Text);
+                    if (MessageBox.Show("Are you sure you wat to delete this user?", "Delete Account", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        delUObj.DeleteUser();
+                        txtBxUserID.Clear();
+                        txtBxEdName.Clear();
+                        txtBxEdSurname.Clear();
+                        txtBxEdPassword.Clear();
+                        txtBxEdEmail.Clear();
+                        PopulateCmbo();
+                    }
+                    else
+                    {
+                        txtBxUserID.Clear();
+                        txtBxEdName.Clear();
+                        txtBxEdSurname.Clear();
+                        txtBxEdPassword.Clear();
+                        txtBxEdEmail.Clear();
+                        PopulateCmbo();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select existing user to Delete.");
+                }
+            }
+        }
+       
         private void cmbBxEdSlctClient_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -166,6 +222,7 @@ namespace CMPG223_Booking
                     txtBxEdClientName.Text = sqlDatRead.GetValue(1).ToString();
                     txtBxEdClientSurname.Text = sqlDatRead.GetValue(2).ToString();
                     txtBxEdClientEmail.Text = sqlDatRead.GetValue(3).ToString();
+                    txtBxEdClientPassword.Clear();
                 }
                 sqlConn.sqlGlbConn.Close();
 
@@ -175,6 +232,140 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+        private void btnEdNewClientSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbBxEdSlctClient.SelectedIndex == -1||txtBxEdClientName!=null)
+                {
+                    UserClass clientAddObj = new UserClass();
+                    clientAddObj.name = txtBxEdClientName.Text.Trim();
+                    clientAddObj.lastName = txtBxEdClientSurname.Text.Trim();
+                    clientAddObj.email = txtBxEdClientEmail.Text.Trim();
+                    clientAddObj.password = txtBxEdClientPassword.Text.Trim();
+                    clientAddObj.CreateClient();
+                    txtBxEdClientID.Clear();
+                    txtBxEdClientName.Clear();
+                    txtBxEdClientSurname.Clear();
+                    txtBxEdClientPassword.Clear();
+                    txtBxEdClientEmail.Clear();
+                    PopulateCmbo();
+                }
+                else
+                {
+                    MessageBox.Show("Sellected Client alrady exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnEdClientUpdate_Click(object sender, EventArgs e)
+        {
+            if (cmbBxEdSlctClient.SelectedIndex >= 0)
+            {
+                int index = cmbBxEdSlctClient.SelectedIndex;
+                try
+                {
+                    UserClass clientUpObj = new UserClass();
+                    clientUpObj.clientID = Convert.ToInt32(txtBxEdClientID.Text);
+                    clientUpObj.name = txtBxEdClientName.Text.Trim();
+                    clientUpObj.lastName = txtBxEdClientSurname.Text.Trim();
+                    clientUpObj.email = txtBxEdClientEmail.Text.Trim();
+                    clientUpObj.password = txtBxEdClientPassword.Text.Trim();
+                    clientUpObj.UpdateClient(clientUpObj.clientID);
+                    txtBxEdClientID.Clear();
+                    txtBxEdClientName.Clear();
+                    txtBxEdClientSurname.Clear();
+                    txtBxEdClientPassword.Clear();
+                    txtBxEdClientEmail.Clear();
+                    PopulateCmbo();
+                    
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                cmbBxEdSlctClient.SelectedIndex = index;
+            }
+            else
+            {
+                MessageBox.Show("Please select existing user to update. To create a new account please use the submit butten.");
+            }
+        }
+        private void btnEdClientDelete_Click(object sender, EventArgs e)
+        {
+            if (cmbBxEdSlctClient.SelectedIndex >= 0)
+            {
+                UserClass clientDelObj = new UserClass();
+                if (txtBxEdClientID.Text != null)
+                {
+                    if (MessageBox.Show(this.ToString(), "Are you sure you wat to delete this user?", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+                    {
+                        clientDelObj.clientID = Convert.ToInt32(txtBxEdClientID.Text);
+                        clientDelObj.DeleteClient();
+                    }
+
+                    txtBxEdClientID.Clear();
+                    txtBxEdClientName.Clear();
+                    txtBxEdClientSurname.Clear();
+                    txtBxEdClientPassword.Clear();
+                    txtBxEdClientEmail.Clear();
+                    PopulateCmbo();
+                }
+                else
+                {
+                    MessageBox.Show("Please select existing client to Delete.");
+                }
+
+            }
+        }
+        private void btnEdCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBxUserID.Clear();
+                txtBxEdName.Clear();
+                txtBxEdSurname.Clear();
+                txtBxEdPassword.Clear();
+                txtBxEdEmail.Clear();
+                PopulateCmbo();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnEdClientCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBxEdClientID.Clear();
+                txtBxEdClientName.Clear();
+                txtBxEdClientSurname.Clear();
+                txtBxEdClientPassword.Clear();
+                txtBxEdClientEmail.Clear();
+                PopulateCmbo();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.ShowDialog();
+            /*if(frmLogin.ShowDialog() == DialogResult.OK || frmLogin.uType=1 )
+            {
+                tabCtrlMain.Visible = true;
+                
+            }*/
+        }
+
+
 
 
 

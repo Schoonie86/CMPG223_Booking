@@ -1,7 +1,14 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CMPG223_Booking.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="dbBookingsConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\P32262345\NWUNextcloud\Studies\CMPG\2nd_Year_2st_Year\CMPG_223_(Systems_Analysis_and_Design_II)\Booking\CMPG223_Booking\Groupe8_Booking_DataBase\dbBookings.mdf;Integrated Security=True;Connect Timeout=0&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\P32262345\NWUNextcloud\Studies\CMPG\2nd_Year_2st_Year\CMPG_223_(Systems_Analysis_and_Design_II)\Booking\CMPG223_Booking\Groupe8_Booking_DataBase\dbBookings.mdf;Integrated Security=True;Connect Timeout=0</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

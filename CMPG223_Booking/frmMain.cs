@@ -548,7 +548,6 @@ namespace CMPG223_Booking
                     menuStrip1.Items.Remove(userToolStripMenuItem);
                     menuStrip1.Items.Remove(eventToolStripMenuItem);
                     menuStrip1.Items.Remove(reprotingToolStripMenuItem);
-                    txtBxBookAttenList.Visible = false;
                     lstBxBookAttendees.Visible = false;
                     cmbBxBookSlctEvent.Enabled = false;
                     cmbBxBookSlctTrain.Enabled = false;
@@ -558,6 +557,9 @@ namespace CMPG223_Booking
                     btnBookUpdate.Visible = false;
                     btnEdClientDelete.Visible = false;
                     btnEdNewClientSubmit.Visible = false;
+                    radioBtnApproved.Enabled = false;
+                    radioBtnNotApproved.Enabled = false;
+                    lblBookAttendee.Visible = false;
                 }
             }
         }
@@ -608,9 +610,8 @@ namespace CMPG223_Booking
 
         private void btnAddAttendee_Click(object sender, EventArgs e)
         {
-            txtBxBookAttenList.Text = cmbBxBookSlctClient.Text;
             lstBxBookAttendees.Items.Add(cmbBxBookSlctClient.Text.ToString());
-            PopulateBookSlctAttendee();
+            //PopulateBookSlctAttendee();
         }
 
         private void btnBookCreate_Click(object sender, EventArgs e)

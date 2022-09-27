@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -101,7 +102,6 @@
             this.tabPgBooking = new System.Windows.Forms.TabPage();
             this.grpBxBooking = new System.Windows.Forms.GroupBox();
             this.lstBxBookAttendees = new System.Windows.Forms.ListBox();
-            this.txtBxBookAttenList = new System.Windows.Forms.TextBox();
             this.txtBxBookingName = new System.Windows.Forms.TextBox();
             this.lblBookingName = new System.Windows.Forms.Label();
             this.btnBookAddAttend = new System.Windows.Forms.Button();
@@ -145,7 +145,6 @@
             this.grpBxLogin = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabCtrlMain.SuspendLayout();
             this.tabPgUser.SuspendLayout();
@@ -188,14 +187,21 @@
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -214,35 +220,35 @@
             // userToolStripMenuItem
             // 
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
-            this.userToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.userToolStripMenuItem.Text = "User";
             this.userToolStripMenuItem.Click += new System.EventHandler(this.userToolStripMenuItem_Click);
             // 
             // clientToolStripMenuItem
             // 
             this.clientToolStripMenuItem.Name = "clientToolStripMenuItem";
-            this.clientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.clientToolStripMenuItem.Text = "Client";
             this.clientToolStripMenuItem.Click += new System.EventHandler(this.clientToolStripMenuItem_Click);
             // 
             // eventToolStripMenuItem
             // 
             this.eventToolStripMenuItem.Name = "eventToolStripMenuItem";
-            this.eventToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eventToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.eventToolStripMenuItem.Text = "Event";
             this.eventToolStripMenuItem.Click += new System.EventHandler(this.eventToolStripMenuItem_Click);
             // 
             // bookingToolStripMenuItem
             // 
             this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
-            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bookingToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.bookingToolStripMenuItem.Text = "Booking";
             this.bookingToolStripMenuItem.Click += new System.EventHandler(this.bookingToolStripMenuItem_Click);
             // 
             // reprotingToolStripMenuItem
             // 
             this.reprotingToolStripMenuItem.Name = "reprotingToolStripMenuItem";
-            this.reprotingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reprotingToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.reprotingToolStripMenuItem.Text = "Reproting";
             this.reprotingToolStripMenuItem.Click += new System.EventHandler(this.reprotingToolStripMenuItem_Click);
             // 
@@ -948,7 +954,6 @@
             // grpBxBooking
             // 
             this.grpBxBooking.Controls.Add(this.lstBxBookAttendees);
-            this.grpBxBooking.Controls.Add(this.txtBxBookAttenList);
             this.grpBxBooking.Controls.Add(this.txtBxBookingName);
             this.grpBxBooking.Controls.Add(this.lblBookingName);
             this.grpBxBooking.Controls.Add(this.btnBookAddAttend);
@@ -984,18 +989,11 @@
             // lstBxBookAttendees
             // 
             this.lstBxBookAttendees.FormattingEnabled = true;
-            this.lstBxBookAttendees.Location = new System.Drawing.Point(117, 170);
+            this.lstBxBookAttendees.Location = new System.Drawing.Point(117, 92);
             this.lstBxBookAttendees.Name = "lstBxBookAttendees";
-            this.lstBxBookAttendees.Size = new System.Drawing.Size(211, 82);
+            this.lstBxBookAttendees.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lstBxBookAttendees.Size = new System.Drawing.Size(211, 160);
             this.lstBxBookAttendees.TabIndex = 50;
-            // 
-            // txtBxBookAttenList
-            // 
-            this.txtBxBookAttenList.Location = new System.Drawing.Point(117, 94);
-            this.txtBxBookAttenList.Multiline = true;
-            this.txtBxBookAttenList.Name = "txtBxBookAttenList";
-            this.txtBxBookAttenList.Size = new System.Drawing.Size(211, 69);
-            this.txtBxBookAttenList.TabIndex = 49;
             // 
             // txtBxBookingName
             // 
@@ -1437,13 +1435,6 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // logoutToolStripMenuItem
-            // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.logoutToolStripMenuItem.Text = "Logout";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1606,7 +1597,6 @@
         private System.Windows.Forms.Label lblBookAttendee;
         private System.Windows.Forms.TextBox txtBxBookingName;
         private System.Windows.Forms.Label lblBookingName;
-        private System.Windows.Forms.TextBox txtBxBookAttenList;
         private System.Windows.Forms.ListBox lstBxBookAttendees;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }

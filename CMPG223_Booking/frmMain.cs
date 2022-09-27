@@ -20,6 +20,11 @@ namespace CMPG223_Booking
         GlobalConnection sqlConn;
         DataTable dt;
         public string varname = "";
+        int slctUID;
+        int slctCID;
+        int slctEID;
+        bool slctBookStat;
+
 
         public frmMain()
         {
@@ -29,20 +34,17 @@ namespace CMPG223_Booking
         {
 
         }
-        private void PopulateCmbo()
+        private void PopulateUserCmbo()
         {
-            sqlConn = new GlobalConnection();
-            sqlConn.glbConn();
-
-            //try cach to Populate the User comboBoxes
-            try
-            {
+            try //try cach to Populate the User comboBoxes
+                {sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
                 cmbBxEdSlctUser.Items.Clear();
                 cmbBxEdSlctUser.Text = "Leave empty to add new User";
                 sqlConn.sqlGlbConn.Open();
                 sqlComm = sqlConn.sqlGlbConn.CreateCommand();
                 sqlComm.CommandType = CommandType.Text;
-                sqlComm.CommandText = "SELECT Name from tbUser";
+                sqlComm.CommandText = "SELECT Name FROM tbUser";
                 sqlComm.ExecuteNonQuery();
                 dt = new DataTable();
                 sqlDatAdap = new SqlDataAdapter(sqlComm);
@@ -58,6 +60,12 @@ namespace CMPG223_Booking
             {
                 MessageBox.Show(ex.Message);
             }
+           
+        }
+        private void PopulateClientCmbo()
+        {
+            sqlConn = new GlobalConnection();
+            sqlConn.glbConn();
             //try cach to Populate the Client comboBoxes
             try
             {
@@ -73,9 +81,9 @@ namespace CMPG223_Booking
                 sqlDatAdap = new SqlDataAdapter(sqlComm);
                 sqlDatAdap.Fill(dt);
 
-                foreach (DataRow dr2 in dt.Rows)
+                foreach (DataRow dr in dt.Rows)
                 {
-                    cmbBxEdSlctClient.Items.Add(dr2["Name"].ToString());
+                    cmbBxEdSlctClient.Items.Add(dr["Name"].ToString());
                 }
                 sqlConn.sqlGlbConn.Close();
             }
@@ -84,11 +92,174 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+        private void PopulateSlctBook()
+        {
+            sqlConn = new GlobalConnection();
+            sqlConn.glbConn();
+            try
+            {
+                cmbBxBookSlctBook.Items.Clear();
+                cmbBxBookSlctEvent.Items.Clear();
+                cmbBxBookSlctTrain.Items.Clear();
+                cmbBxBookSlctClient.Items.Clear();
+                cmbBxBookSlctBook.Text = "Leave empty to add new Booking";
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = new SqlCommand();
+                sqlComm = sqlConn.sqlGlbConn.CreateCommand();
+                sqlComm.CommandType = CommandType.Text;
+                sqlComm.CommandText = "SELECT BookingName FROM tbBooking";
+                sqlComm.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDatAdap = new SqlDataAdapter(sqlComm);
+                sqlDatAdap.Fill(dt);
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                cmbBxBookSlctBook.Items.Add(dr["BookingName"].ToString());
+            }
+            sqlConn.sqlGlbConn.Close();
+        }
+        private void PopulateSlctEvent()
+        {
+            sqlConn = new GlobalConnection();
+            sqlConn.glbConn();
+
+            //try cach to Populate the Event comboBoxes
+            try
+            {
+                cmbBxSlctEvent.Items.Clear();
+                cmbBxSlctEvent.Text = "Leave empty to add new Event";
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = sqlConn.sqlGlbConn.CreateCommand();
+                sqlComm.CommandType = CommandType.Text;
+                sqlComm.CommandText = "SELECT Name from tbEvent";
+                sqlComm.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDatAdap = new SqlDataAdapter(sqlComm);
+                sqlDatAdap.Fill(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbBxSlctEvent.Items.Add(dr["Name"].ToString());
+                    
+                }
+                sqlConn.sqlGlbConn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        private void PopulateBookSlctEvent()
+        {
+            sqlConn = new GlobalConnection();
+            sqlConn.glbConn();
+
+            //try cach to Populate the Event comboBoxes
+            try
+            {
+                cmbBxBookSlctEvent.Items.Clear();
+                cmbBxBookSlctEvent.Text = "Please select the Event";
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = sqlConn.sqlGlbConn.CreateCommand();
+                sqlComm.CommandType = CommandType.Text;
+                sqlComm.CommandText = "SELECT Name from tbEvent";
+                sqlComm.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDatAdap = new SqlDataAdapter(sqlComm);
+                sqlDatAdap.Fill(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbBxBookSlctEvent.Items.Add(dr["Name"].ToString());
+                }
+                sqlConn.sqlGlbConn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
+        private void PopulateBookSlctTrain()
+        {
+            sqlConn = new GlobalConnection();
+            sqlConn.glbConn();
+
+            //try cach to Populate the Trainer comboBoxes
+            try
+            {
+                cmbBxBookSlctTrain.Items.Clear();
+                cmbBxBookSlctTrain.Text = "Please Select the Trainer";
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = sqlConn.sqlGlbConn.CreateCommand();
+                sqlComm.CommandType = CommandType.Text;
+                sqlComm.CommandText = "SELECT Name FROM tbUser";
+                sqlComm.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDatAdap = new SqlDataAdapter(sqlComm);
+                sqlDatAdap.Fill(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbBxBookSlctTrain.Items.Add(dr["Name"].ToString());
+                }
+                sqlConn.sqlGlbConn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void PopulateBookSlctAttendee()
+        {
+            sqlConn = new GlobalConnection();
+            sqlConn.glbConn();
+            //try cach to Populate the Client comboBoxes
+            try
+            {
+                cmbBxBookSlctClient.Items.Clear();
+                cmbBxBookSlctClient.Text = "Please select the Attendees";
+                sqlConn.sqlGlbConn.Open();
+                //sqlComm = new SqlCommand();
+                sqlComm = sqlConn.sqlGlbConn.CreateCommand();
+                sqlComm.CommandType = CommandType.Text;
+                sqlComm.CommandText = "SELECT Name FROM tbClient";
+                sqlComm.ExecuteNonQuery();
+                dt = new DataTable();
+                sqlDatAdap = new SqlDataAdapter(sqlComm);
+                sqlDatAdap.Fill(dt);
+
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbBxBookSlctClient.Items.Add(dr["Name"].ToString());
+                }
+                sqlConn.sqlGlbConn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
         private void frmMain_Load(object sender, EventArgs e)
         {
-            PopulateCmbo();
-            
+            PopulateUserCmbo();
+            PopulateClientCmbo();
+            PopulateSlctBook();
+            PopulateSlctEvent();
+            PopulateBookSlctEvent();
+            PopulateBookSlctTrain();
+            PopulateBookSlctAttendee();
         }
+
         private void cmbBxEdSlctUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -129,7 +300,7 @@ namespace CMPG223_Booking
                     txtBxEdSurname.Clear();
                     txtBxEdPassword.Clear();
                     txtBxEdEmail.Clear();
-                    PopulateCmbo();
+                    PopulateUserCmbo();
                 }
                 else
                 {
@@ -150,18 +321,18 @@ namespace CMPG223_Booking
                 try
                 {
                     UserClass userUpObj = new UserClass();
-                    userUpObj.ID = Convert.ToInt32(txtBxUserID.Text);
+                    userUpObj.userID = Convert.ToInt32(txtBxUserID.Text);
                     userUpObj.name = txtBxEdName.Text.Trim();
                     userUpObj.lastName = txtBxEdSurname.Text.Trim();
                     userUpObj.email = txtBxEdEmail.Text.Trim();
                     userUpObj.password = txtBxEdPassword.Text.Trim();
-                    userUpObj.UpdateUser(userUpObj.ID);
+                    userUpObj.UpdateUser(userUpObj.userID);
                     txtBxUserID.Clear();
                     txtBxEdName.Clear();
                     txtBxEdSurname.Clear();
                     txtBxEdPassword.Clear();
                     txtBxEdEmail.Clear();
-                    PopulateCmbo();
+                    PopulateUserCmbo();
                 }
                 catch(SqlException ex)
                 {
@@ -181,7 +352,7 @@ namespace CMPG223_Booking
                 UserClass delUObj = new UserClass();
                 if (txtBxUserID.Text != null)
                 {
-                    delUObj.ID = Convert.ToInt32(txtBxUserID.Text);
+                    delUObj.userID = Convert.ToInt32(txtBxUserID.Text);
                     if (MessageBox.Show("Are you sure you wat to delete this user?", "Delete Account", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         delUObj.DeleteUser();
@@ -190,7 +361,7 @@ namespace CMPG223_Booking
                         txtBxEdSurname.Clear();
                         txtBxEdPassword.Clear();
                         txtBxEdEmail.Clear();
-                        PopulateCmbo();
+                        PopulateUserCmbo();
                     }
                     else
                     {
@@ -199,7 +370,7 @@ namespace CMPG223_Booking
                         txtBxEdSurname.Clear();
                         txtBxEdPassword.Clear();
                         txtBxEdEmail.Clear();
-                        PopulateCmbo();
+                        PopulateUserCmbo();
                     }
                 }
                 else
@@ -249,7 +420,7 @@ namespace CMPG223_Booking
                     txtBxEdClientSurname.Clear();
                     txtBxEdClientPassword.Clear();
                     txtBxEdClientEmail.Clear();
-                    PopulateCmbo();
+                    PopulateUserCmbo();
                 }
                 else
                 {
@@ -280,7 +451,7 @@ namespace CMPG223_Booking
                     txtBxEdClientSurname.Clear();
                     txtBxEdClientPassword.Clear();
                     txtBxEdClientEmail.Clear();
-                    PopulateCmbo();
+                    PopulateClientCmbo();
                     
                 }
                 catch (SqlException ex)
@@ -312,7 +483,7 @@ namespace CMPG223_Booking
                     txtBxEdClientSurname.Clear();
                     txtBxEdClientPassword.Clear();
                     txtBxEdClientEmail.Clear();
-                    PopulateCmbo();
+                    PopulateClientCmbo();
                 }
                 else
                 {
@@ -330,7 +501,7 @@ namespace CMPG223_Booking
                 txtBxEdSurname.Clear();
                 txtBxEdPassword.Clear();
                 txtBxEdEmail.Clear();
-                PopulateCmbo();
+                PopulateUserCmbo();
             }
             catch(Exception ex)
             {
@@ -346,7 +517,7 @@ namespace CMPG223_Booking
                 txtBxEdClientSurname.Clear();
                 txtBxEdClientPassword.Clear();
                 txtBxEdClientEmail.Clear();
-                PopulateCmbo();
+                PopulateClientCmbo();
             }
             catch(Exception ex)
             {
@@ -358,113 +529,213 @@ namespace CMPG223_Booking
         {
             frmLogin frmLogin = new frmLogin();
             frmLogin.ShowDialog();
-            /*if(frmLogin.ShowDialog() == DialogResult.OK || frmLogin.uType=1 )
+            if (frmLogin.DialogResult == DialogResult.OK)
             {
-                tabCtrlMain.Visible = true;
-                
-            }*/
+                if (frmLogin.uType == 1)
+                {
+                    tabCtrlMain.Visible = true;
+                    tabPgBooking.Visible = true;
+                    tabPgClient.Visible = true;
+                    tabPgEvent.Visible = true;
+                    tabPgUser.Visible = true;
+                }
+                else if (frmLogin.uType == 2)
+                {
+                    tabCtrlMain.Visible = true;
+                    tabCtrlMain.TabPages.Remove(tabPgUser);
+                    tabCtrlMain.TabPages.Remove(tabPgEvent);
+                    tabCtrlMain.TabPages.Remove(tabPgReporting);
+                    menuStrip1.Items.Remove(userToolStripMenuItem);
+                    menuStrip1.Items.Remove(eventToolStripMenuItem);
+                    menuStrip1.Items.Remove(reprotingToolStripMenuItem);
+                    txtBxBookAttenList.Visible = false;
+                    lstBxBookAttendees.Visible = false;
+                    cmbBxBookSlctEvent.Enabled = false;
+                    cmbBxBookSlctTrain.Enabled = false;
+                    txtBxBookingName.Enabled = false;
+                    txtBxBookComments.Enabled = false;
+                    btnBookCreate.Visible = false;
+                    btnBookUpdate.Visible = false;
+                    btnEdClientDelete.Visible = false;
+                    btnEdNewClientSubmit.Visible = false;
+                }
+            }
         }
 
+        private void btnSignUp_Click(object sender, EventArgs e)
+        {
+            frmClientSignUp frmClientSignUp = new frmClientSignUp();
+            frmClientSignUp.ShowDialog();
+        }
 
+        private void cmbBxSlctBooking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = new SqlCommand($"SELECT BookingID, BookingName, EventID, UserID, Aproved, Coments FROM tbBooking WHERE BookingName = '{cmbBxBookSlctBook.Text}'", sqlConn.sqlGlbConn);
+                sqlDatRead = sqlComm.ExecuteReader();
+                while (sqlDatRead.Read())
+                {
+                    txtBxBookingID.Text = sqlDatRead.GetValue(0).ToString();
+                    txtBxBookingName.Text = sqlDatRead.GetValue(1).ToString();
+                    cmbBxBookSlctEvent.Text = sqlDatRead.GetValue(2).ToString();
+                    cmbBxBookSlctTrain.Text = sqlDatRead.GetValue(3).ToString();
+                    if (sqlDatRead.GetValue(4).ToString() == "true")
+                    {
+                        radioBtnApproved.Checked = true;
+                    }
+                    else if (sqlDatRead.GetValue(4).ToString() == "false")
+                    {
+                        radioBtnNotApproved.Checked = true;
+                    }
+                    txtBxBookComments.Text = sqlDatRead.GetValue(5).ToString();
+                }
+                //sqlComm = new SqlCommand($"SELECT DISTINCT Name FROM tbBooking INNER JOIN tbClient ON tbBooking.ClientID = tbClient.ClientID WHERE BookingID = {cmbBxBookSlctBook.Text}", sqlConn.sqlGlbConn);
+                //sqlDatRead = sqlComm.ExecuteReader();
+                //while (sqlDatRead.Read())
+                //{
+                //    lstBxBookAttendees.Items.Clear();
+                //    lstBxBookAttendees.Items.Add(sqlDatRead.GetString(0));
+                //}
+                sqlConn.sqlGlbConn.Close();
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void btnAddAttendee_Click(object sender, EventArgs e)
+        {
+            txtBxBookAttenList.Text = cmbBxBookSlctClient.Text;
+            lstBxBookAttendees.Items.Add(cmbBxBookSlctClient.Text.ToString());
+            PopulateBookSlctAttendee();
+        }
 
+        private void btnBookCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
+                sqlConn.sqlGlbConn.Open();
+                sqlDatAdap = new SqlDataAdapter();
+                
+                if (cmbBxBookSlctTrain.SelectedIndex >=0)
+                {
+                    sqlComm = new SqlCommand($"SELECT UserID FROM tbUser WHERE Name = '{cmbBxBookSlctTrain.Text}'", sqlConn.sqlGlbConn);
+                    sqlDatRead = sqlComm.ExecuteReader();
+                    while (sqlDatRead.Read())
+                    {
+                        slctUID = Convert.ToInt32(sqlDatRead.GetValue(0));
+                    }
+                }
+                else if(cmbBxBookSlctClient.SelectedIndex >= 0)
+                {
+                    sqlComm = new SqlCommand($"SELECT ClientID FROM tbClient WHERE Name = '{cmbBxBookSlctClient.Text}'", sqlConn.sqlGlbConn);
+                    sqlDatRead = sqlComm.ExecuteReader();
+                    while (sqlDatRead.Read())
+                    {
+                        slctCID = Convert.ToInt32(sqlDatRead.GetValue(0));
+                    }
+                }
+                else if (cmbBxBookSlctEvent.SelectedIndex >= 0)
+                {
+                    sqlComm = new SqlCommand($"SELECT EventID FROM tbEvent WHERE Name = '{cmbBxBookSlctEvent.Text}'", sqlConn.sqlGlbConn);
+                    sqlDatRead = sqlComm.ExecuteReader();
+                    while(sqlDatRead.Read())
+                    {
+                        slctEID = Convert.ToInt32(sqlDatRead.GetValue(0));
+                    }
+                }
+                if (radioBtnApproved.Checked)
+                {
+                    slctBookStat = true;
+                }
+                else if (radioBtnNotApproved.Checked)
+                {
+                    slctBookStat = false;
+                }
+                if (cmbBxBookSlctBook.SelectedIndex == -1)
+                {
+                    BookingClass bookObj = new BookingClass();
+                    bookObj.bookName = txtBxBookingName.Text;
+                    bookObj.userID = slctUID;
+                    bookObj.clientID = slctCID;
+                    bookObj.eventID = slctEID;
+                    bookObj.bookStat = slctBookStat;
+                    bookObj.bookComments = txtBxBookComments.Text;
+                    bookObj.CreatBooking();
+                }
+                else
+                {
+                    MessageBox.Show("Please Check all fields.");
+                }
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.ShowDialog();
+            if (frmLogin.DialogResult == DialogResult.OK)
+            {
+                if (frmLogin.uType == 1)
+                {
+                    tabCtrlMain.Visible = true;
+                    tabPgBooking.Visible = true;
+                    tabPgClient.Visible = true;
+                    tabPgEvent.Visible = true;
+                    tabPgUser.Visible = true;
+                }
+                else if (frmLogin.uType == 2)
+                {
+                    tabCtrlMain.Visible = true;
+                    tabCtrlMain.TabPages.Remove(tabPgUser);
+                    tabCtrlMain.TabPages.Remove(tabPgEvent);
+                    tabCtrlMain.TabPages.Remove(tabPgReporting);
+                }
+            }
+        }
 
-        /*
-private void Login(int userName, string password)
-{
-   userName = Convert.ToInt16(txtBxUserName.Text);
-   password = txtBxPassword.Text;
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabCtrlMain.Visible = false;
+        }
 
-   try
-   {
-       sqlConnection = new GlobalConnection();
-       sqlConnection.glbConnection();
-       sqlConnection.sqlGlbConnection.Open();
-       sqlDataAdapter = new SqlDataAdapter();
-       sqlCommand = new SqlCommand(@"Select User_ID,Password From tb_User", sqlConnection.sqlGlbConnection);
-       ds = new DataSet();
-       sqlDataAdapter.SelectCommand = sqlCommand;
-       sqlDataAdapter.Fill(ds, "tbsrs");
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
-       sqlConnection.sqlGlbConnection.Close();
-   }
-   catch (SqlException error)
-   {
-       MessageBox.Show(error.Message);
-   }
+        private void userToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabCtrlMain.SelectTab(tabPgUser);
+        }
 
+        private void clientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabCtrlMain.SelectTab(tabPgClient);
+        }
 
-}
-private void DataConnect()
-{
-   if (tabCtrlMain.SelectedIndex == 0)  // Determine user selection and Login
-   {
-       //Verify User Login Details 
-       try
-       {
-           sqlConnection = new GlobalConnection();
-           sqlConnection.glbConnection();
-           sqlConnection.sqlGlbConnection.Open();
-           sqlDataAdapter = new SqlDataAdapter();
-           sqlCommand = new SqlCommand(@"Select User_ID From tb_User", sqlConnection.sqlGlbConnection);
-           ds = new DataSet();
-           sqlDataAdapter.SelectCommand = sqlCommand;
-           sqlDataAdapter.Fill(ds, "tbsrs");
-           dgvMovies.DataSource = ds;
-           dgvMovies.DataMember = "tbsrs";
-           sqlConnection.sqlGlbConnection.Close();
-       }
-       catch (SqlException error)
-       {
-           MessageBox.Show(error.Message);
-       }
+        private void eventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabCtrlMain.SelectTab(tabPgEvent);
+        }
 
-       //Populate the ComboBox for deleting Movies.
-       try
-       {
-           conn.gblCon();
-           conn.con.Open();
-           adapter = new SqlDataAdapter();
-           com = new SqlCommand(@"Select DISTINCT MovieName From tblMovies", conn.con);
-           ds = new DataSet();
-           adapter.SelectCommand = com;
-           adapter.Fill(ds, "tbsrs");
-           cbxDelMovie.DisplayMember = "MovieName";
-           cbxDelMovie.ValueMember = "MovieName";
-           cbxDelMovie.DataSource = ds.Tables["tbsrs"];
-           conn.con.Close();
-       }
-       catch (SqlException error)
-       {
-           MessageBox.Show(error.Message);
-       }
-   }
-   else if (tctrMain.SelectedIndex == 1)
-   {
-       //Populating the ListBox from database using the SqlDataReader.
-       try
-       {
-           conn.gblCon();
-           conn.con.Open();
-           com = new SqlCommand(@"SELECT * FROM tblMovies", conn.con);
-           dataReader = com.ExecuteReader();
-           while (dataReader.Read())
-           {
-               lbxMovies.Items.Add(dataReader.GetValue(0) + "\t" + dataReader.GetValue(1) + "\t" + dataReader.GetValue(2) + "\t" + dataReader.GetValue(3) + "\n");
-               lbxMovies.Items.Add("\n");
-           }
-           conn.con.Close();
-           dataReader.Close();
-           com.Dispose();
-       }
-       catch (SqlException error)
-       {
-           MessageBox.Show(error.Message);
-       }
-   }
-}*/
+        private void bookingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabCtrlMain.SelectTab(tabPgBooking);
+        }
 
-
+        private void reprotingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tabCtrlMain.SelectTab(tabPgReporting);
+        }
     }
 }

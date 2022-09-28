@@ -738,5 +738,77 @@ namespace CMPG223_Booking
         {
             tabCtrlMain.SelectTab(tabPgReporting);
         }
+
+        // Handles Events
+        private void cmbBxSlctEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = new SqlCommand($"SELECT EventID, Name, Type, Discription, EventStartDate, EventEndDate, EventStartTime, EventEndTime FROM tbEvent WHERE Name = '{cmbBxSlctEvent.Text}'", sqlConn.sqlGlbConn);
+                sqlDatRead = sqlComm.ExecuteReader();
+                while (sqlDatRead.Read())
+                {
+                    txtBxEventID.Text = sqlDatRead.GetValue(0).ToString();
+                    txtBxEventName.Text = sqlDatRead.GetValue(1).ToString();
+                    if (sqlDatRead.GetValue(2).ToString() == "1") 
+                        radioBtnTraining.Checked = true;
+                    else radioBtnExam.Checked = true;
+                    rTxtBxDiscription.Text = sqlDatRead.GetValue(3).ToString();
+                    dtPckrEventStartDate.Text = sqlDatRead.GetValue(4).ToString();
+                    dtPckrEventEndDate.Text = sqlDatRead.GetValue(5).ToString();
+                    cmbBxEventStartTime.Text = sqlDatRead.GetValue(6).ToString();
+                    cmbBxEventEndTime.Text = sqlDatRead.GetValue(7).ToString();
+                    
+                }
+                sqlConn.sqlGlbConn.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnNewEventSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbBxEdSlctClient.SelectedIndex == -1 || txtBxEdClientName != null)
+                {
+                    EventClass clientAddObj = new EventClass();
+                    clientAddObj.EventName = txtBxEventName.Text.Trim();
+                    if (radioBtnTraining.Checked == true)
+                        clientAddObj.EventType = 1;
+                    else clientAddObj.EventType = 0;
+                    clientAddObj.EventDiscription = rTxtBxDiscription.Text.Trim();
+                    clientAddObj.EventStartDate = dtPckrEventStartDate.Value;
+                    clientAddObj.EventEndDate = dtPckrEventEndDate.Value;
+                    clientAddObj.EventStartTime = Convert.ToDateTime(cmbBxEventStartTime.Text);
+                    clientAddObj.EventEndTime = Convert.ToDateTime(cmbBxEventEndTime);
+                    clientAddObj.CreateEvent();
+                   /* txtBxEventID.Text = "";
+                    txtBxEventName.Clear();
+                    radioBtnExam.Checked = false;
+                    radioBtnTraining.Checked = false;
+                    rTxtBxDiscription.Clear();
+                    dtPckrEventStartDate.Text = "";
+                    dtPckrEventEndDate.Text = "";
+                    //cmbBxEventStartTime.Text = "";*/
+                    //cmbBxEventEndTime.Clear();
+
+                    txtBxEdClientEmail.Clear();
+                    PopulateUserCmbo();
+                }
+                else
+                {
+                    MessageBox.Show("Event already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

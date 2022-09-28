@@ -14,7 +14,7 @@ namespace CMPG223_Booking.Classes
 
         public void glbConn()
         {
-            sqlGlbConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\P32262345\NWUNextcloud\Studies\CMPG\2nd_Year_2st_Year\CMPG_223_(Systems_Analysis_and_Design_II)\Booking\CMPG223_Booking\Groupe8_Booking_DataBase\dbBookings.mdf;Integrated Security=True;Connect Timeout=30");
+            sqlGlbConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Groupe8\dbBookings.mdf;Integrated Security=True;Connect Timeout=30");
         }
     }
 }

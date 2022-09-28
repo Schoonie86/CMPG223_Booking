@@ -78,6 +78,7 @@
             this.lblEdClientSername = new System.Windows.Forms.Label();
             this.tabPgEvent = new System.Windows.Forms.TabPage();
             this.grpBxEvent = new System.Windows.Forms.GroupBox();
+            this.txtDiscription = new System.Windows.Forms.Label();
             this.rTxtBxDiscription = new System.Windows.Forms.RichTextBox();
             this.dtPckrEventEndDate = new System.Windows.Forms.DateTimePicker();
             this.lblEventEndDate = new System.Windows.Forms.Label();
@@ -146,7 +147,6 @@
             this.grpBxLogin = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.txtDiscription = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabCtrlMain.SuspendLayout();
             this.tabPgUser.SuspendLayout();
@@ -172,7 +172,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(945, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(945, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -189,21 +189,21 @@
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.loginToolStripMenuItem.Text = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -705,6 +705,15 @@
             this.grpBxEvent.TabStop = false;
             this.grpBxEvent.Text = "Events";
             // 
+            // txtDiscription
+            // 
+            this.txtDiscription.AutoSize = true;
+            this.txtDiscription.Location = new System.Drawing.Point(16, 148);
+            this.txtDiscription.Name = "txtDiscription";
+            this.txtDiscription.Size = new System.Drawing.Size(70, 16);
+            this.txtDiscription.TabIndex = 33;
+            this.txtDiscription.Text = "Discription";
+            // 
             // rTxtBxDiscription
             // 
             this.rTxtBxDiscription.Location = new System.Drawing.Point(19, 167);
@@ -864,6 +873,7 @@
             this.btnEventDelete.TabIndex = 18;
             this.btnEventDelete.Text = "Delete";
             this.btnEventDelete.UseVisualStyleBackColor = true;
+            this.btnEventDelete.Click += new System.EventHandler(this.btnEventDelete_Click);
             // 
             // btnNewEventSubmit
             // 
@@ -888,13 +898,14 @@
             // 
             // btnEventUpdate
             // 
-            this.btnEventUpdate.Location = new System.Drawing.Point(185, 241);
+            this.btnEventUpdate.Location = new System.Drawing.Point(171, 241);
             this.btnEventUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEventUpdate.Name = "btnEventUpdate";
             this.btnEventUpdate.Size = new System.Drawing.Size(121, 23);
             this.btnEventUpdate.TabIndex = 15;
             this.btnEventUpdate.Text = "Update";
             this.btnEventUpdate.UseVisualStyleBackColor = true;
+            this.btnEventUpdate.Click += new System.EventHandler(this.btnEventUpdate_Click);
             // 
             // lblEventStartDate
             // 
@@ -1451,15 +1462,6 @@
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
-            // txtDiscription
-            // 
-            this.txtDiscription.AutoSize = true;
-            this.txtDiscription.Location = new System.Drawing.Point(16, 148);
-            this.txtDiscription.Name = "txtDiscription";
-            this.txtDiscription.Size = new System.Drawing.Size(70, 16);
-            this.txtDiscription.TabIndex = 33;
-            this.txtDiscription.Text = "Discription";
             // 
             // frmMain
             // 

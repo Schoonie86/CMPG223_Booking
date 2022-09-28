@@ -49,8 +49,8 @@ namespace CMPG223_Booking.Classes
                 EventType = 0;
                 EventStartDate = DateTime.Now;
                 EventEndDate = DateTime.Now;
-                EventStartTime = DateTime.Now;
-                EventEndTime = DateTime.Now;
+                EventStartTime = DateTime.Parse("");
+                EventEndTime = DateTime.Parse("hh:mm");
 
             }
             catch (Exception ex)
@@ -81,11 +81,42 @@ namespace CMPG223_Booking.Classes
 
         public void UpdateEvent()
         {
-
+            try
+            {
+                sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
+                sqlConn.sqlGlbConn.Open();
+                sqlDatAdap = new SqlDataAdapter();
+                sqlComm = new SqlCommand($"UPDATE tbEvent SET Name='{EventName}',Type='{EventType}',Discription = {EventDiscription}',EventStartDate='{EventStartDate}, EventEndDate= '{EventEndDate}', EventStartTime= '{EventStartTime}', EventEndTime= {EventEndTime}' WHERE UserID={EventID}", sqlConn.sqlGlbConn);
+                sqlDatAdap.UpdateCommand = sqlComm;
+                sqlDatAdap.UpdateCommand.ExecuteNonQuery();
+                sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You Successfully updated the event details.");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void DeleteEvent()
         {
+            try
+            {
+                sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
+                sqlConn.sqlGlbConn.Open();
+                sqlDatAdap = new SqlDataAdapter();
+                sqlComm = new SqlCommand($"DELETE FROM tbEvent WHERE EventID={EventID}", sqlConn.sqlGlbConn);
+                sqlDatAdap.UpdateCommand = sqlComm;
+                sqlDatAdap.UpdateCommand.ExecuteNonQuery();
+                sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You Successfully Deleted the event details.");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 

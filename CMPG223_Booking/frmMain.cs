@@ -1,4 +1,5 @@
-﻿using System;
+﻿//32262345 - Johan Schoonen, 25759086 - Dehann van Kradenburg - CMPG223 - Final Project 2022
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using CMPG223_Booking.Classes;
+// Calls for and enables SQL functionality
 
 namespace CMPG223_Booking
 {
@@ -34,7 +36,8 @@ namespace CMPG223_Booking
         {
 
         }
-        private void PopulateUserCmbo()
+        //This populates the User fields in the main form with Database info
+        private void PopulateUserCmbo() 
         {
             try //try cach to Populate the User comboBoxes
                 {sqlConn = new GlobalConnection();
@@ -60,8 +63,8 @@ namespace CMPG223_Booking
             {
                 MessageBox.Show(ex.Message);
             }
-           
-        }
+
+        }//This populates the Client fields in the main form with Database info
         private void PopulateClientCmbo()
         {
             sqlConn = new GlobalConnection();
@@ -92,6 +95,7 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+        //This connects with Booking info from Database
         private void PopulateSlctBook()
         {
             sqlConn = new GlobalConnection();
@@ -251,6 +255,8 @@ namespace CMPG223_Booking
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //Populate fields with database info upon form startup
+
             PopulateUserCmbo();
             PopulateClientCmbo();
             PopulateSlctBook();
@@ -262,6 +268,8 @@ namespace CMPG223_Booking
 
         private void cmbBxEdSlctUser_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //User info read from Database
+
             try
             {
                 sqlConn.sqlGlbConn.Open();
@@ -285,6 +293,8 @@ namespace CMPG223_Booking
         }
         private void btnEdNewUserSubmit_Click(object sender, EventArgs e)
         {
+            //User info added to Database
+
             try
             {
                 if (cmbBxEdSlctUser.SelectedIndex == -1)
@@ -315,6 +325,8 @@ namespace CMPG223_Booking
         }
         private void btnEdUpdate_Click(object sender, EventArgs e)
         {
+            //User info can be edited and saved to Database
+
             if (cmbBxEdSlctUser.SelectedIndex >= 0)
             {
                 int index = cmbBxEdSlctUser.SelectedIndex;
@@ -347,6 +359,9 @@ namespace CMPG223_Booking
         }
         private void btnEdDelete_Click(object sender, EventArgs e)
         {
+            //User info can be deleted from Database
+
+
             if (cmbBxEdSlctUser.SelectedIndex >= 0)
             {
                 UserClass delUObj = new UserClass();
@@ -382,6 +397,7 @@ namespace CMPG223_Booking
        
         private void cmbBxEdSlctClient_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Reads and lists client info from database when selected from Combobox
             try
             {
                 sqlConn.sqlGlbConn.Open();
@@ -405,6 +421,8 @@ namespace CMPG223_Booking
         }
         private void btnEdNewClientSubmit_Click(object sender, EventArgs e)
         {
+            //Able to add client to database
+
             try
             {
                 if (cmbBxEdSlctClient.SelectedIndex == -1||txtBxEdClientName!=null)
@@ -434,6 +452,8 @@ namespace CMPG223_Booking
         }
         private void btnEdClientUpdate_Click(object sender, EventArgs e)
         {
+            //Able to edit client information 
+
             if (cmbBxEdSlctClient.SelectedIndex >= 0)
             {
                 int index = cmbBxEdSlctClient.SelectedIndex;
@@ -467,6 +487,8 @@ namespace CMPG223_Booking
         }
         private void btnEdClientDelete_Click(object sender, EventArgs e)
         {
+            //Delete Client information from database
+
             if (cmbBxEdSlctClient.SelectedIndex >= 0)
             {
                 UserClass clientDelObj = new UserClass();
@@ -494,6 +516,8 @@ namespace CMPG223_Booking
         }
         private void btnEdCancel_Click(object sender, EventArgs e)
         {
+            //Cancel and clear currently selected and inserted information from form
+
             try
             {
                 txtBxUserID.Clear();
@@ -510,6 +534,8 @@ namespace CMPG223_Booking
         }
         private void btnEdClientCancel_Click(object sender, EventArgs e)
         {
+            //Cancel and clear currently selected and inserted information from client form
+
             try
             {
                 txtBxEdClientID.Clear();
@@ -527,6 +553,8 @@ namespace CMPG223_Booking
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            //Enables log in of user or client account
+
             frmLogin frmLogin = new frmLogin();
             frmLogin.ShowDialog();
             if (frmLogin.DialogResult == DialogResult.OK)
@@ -566,12 +594,16 @@ namespace CMPG223_Booking
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
+            //Enables creation of new user or client account
+
             frmClientSignUp frmClientSignUp = new frmClientSignUp();
             frmClientSignUp.ShowDialog();
         }
 
         private void cmbBxSlctBooking_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Reads Booking info from database when selected from Combobox
+
             try
             {
                 sqlConn.sqlGlbConn.Open();
@@ -616,6 +648,8 @@ namespace CMPG223_Booking
 
         private void btnBookCreate_Click(object sender, EventArgs e)
         {
+            //Create booking information to Database
+
             try
             {
                 sqlConn = new GlobalConnection();
@@ -681,7 +715,8 @@ namespace CMPG223_Booking
         }
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {   //Login with existing user account
+
             frmLogin frmLogin = new frmLogin();
             frmLogin.ShowDialog();
             if (frmLogin.DialogResult == DialogResult.OK)
@@ -694,6 +729,7 @@ namespace CMPG223_Booking
                     tabPgEvent.Visible = true;
                     tabPgUser.Visible = true;
                 }
+                // Login with existing client account
                 else if (frmLogin.uType == 2)
                 {
                     tabCtrlMain.Visible = true;
@@ -711,6 +747,7 @@ namespace CMPG223_Booking
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Exits the application
             this.Close();
         }
 
@@ -742,6 +779,8 @@ namespace CMPG223_Booking
         // Handles Events
         private void cmbBxSlctEvent_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Reads Events info from database when selected from Combobox
+
             try
             {
                 sqlConn.sqlGlbConn.Open();
@@ -772,6 +811,7 @@ namespace CMPG223_Booking
 
         private void btnNewEventSubmit_Click(object sender, EventArgs e)
         {
+            // Add new Event info to Database
             try
             {
                 if (cmbBxEdSlctClient.SelectedIndex == -1 || txtBxEdClientName != null)
@@ -784,8 +824,8 @@ namespace CMPG223_Booking
                     clientAddObj.EventDiscription = rTxtBxDiscription.Text.Trim();
                     clientAddObj.EventStartDate = dtPckrEventStartDate.Value;
                     clientAddObj.EventEndDate = dtPckrEventEndDate.Value;
-                    clientAddObj.EventStartTime = Convert.ToDateTime(cmbBxEventStartTime.Text);
-                    clientAddObj.EventEndTime = Convert.ToDateTime(cmbBxEventEndTime);
+                    clientAddObj.EventStartTime = Convert.ToDateTime(DateTime.Parse(cmbBxEventStartTime.Text));
+                    clientAddObj.EventEndTime = Convert.ToDateTime(DateTime.Parse(cmbBxEventEndTime.Text));
                     clientAddObj.CreateEvent();
                    /* txtBxEventID.Text = "";
                     txtBxEventName.Clear();
@@ -802,13 +842,95 @@ namespace CMPG223_Booking
                 }
                 else
                 {
-                    MessageBox.Show("Event already exist");
+                    MessageBox.Show("Event already exists");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnEventUpdate_Click(object sender, EventArgs e)
+        {
+            // Edit existing Event info from Database
+
+            if (cmbBxSlctEvent.SelectedIndex >= 0)
+            {
+                int index = cmbBxSlctEvent.SelectedIndex;
+                try
+                {
+                    EventClass clientUpObj = new EventClass();
+                    clientUpObj.EventID = Convert.ToInt32(txtBxEventID.Text);
+                    clientUpObj.EventName = txtBxEventName.Text.Trim();
+                    if (radioBtnTraining.Checked == true)
+                        clientUpObj.EventType = 1;
+                    else clientUpObj.EventType = 0;
+                    clientUpObj.EventDiscription = rTxtBxDiscription.Text.Trim();
+                    clientUpObj.EventStartDate = dtPckrEventStartDate.Value;
+                    clientUpObj.EventEndDate = dtPckrEventEndDate.Value;
+                    /*txtBxEdClientID.Clear();
+                    txtBxEdClientName.Clear();
+                    txtBxEdClientSurname.Clear();
+                    txtBxEdClientPassword.Clear();
+                    txtBxEdClientEmail.Clear();
+                    PopulateClientCmbo();*/
+
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                cmbBxEdSlctClient.SelectedIndex = index;
+            }
+            else
+            {
+                MessageBox.Show("Please select existing evemt to update. To create a new event please use the submit button.");
+            }
+        }
+
+        private void btnEventDelete_Click(object sender, EventArgs e)
+        {
+            // Remove existing Event info from Database
+
+            if (cmbBxBookSlctEvent.SelectedIndex >= 0)
+            {
+                EventClass delUObj = new EventClass();
+                if (txtBxEventID.Text != null)
+                {
+                    delUObj.EventID = Convert.ToInt32(txtBxEventID.Text);
+                    if (MessageBox.Show("Are you sure you wat to delete this Event?", "Delete Event", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        delUObj.DeleteEvent();
+                        txtBxEventID.Clear();
+                        txtBxEventName.Clear();
+                        //eventtype
+                        rTxtBxDiscription.Clear();
+                        dtPckrEventStartDate.CalendarFont = null;
+                        dtPckrEventEndDate.CalendarFont = null;
+                        cmbBxEventStartTime.Text = "";
+                        cmbBxEventEndTime.Text = "";
+                        PopulateUserCmbo();
+                    }
+                    else
+                    {
+                        txtBxEventID.Clear();
+                        txtBxEventName.Clear();
+                        //eventtype
+                        rTxtBxDiscription.Clear();
+                        dtPckrEventStartDate.CalendarFont = null;
+                        dtPckrEventEndDate.CalendarFont = null;
+                        cmbBxEventStartTime.Text = "";
+                        cmbBxEventEndTime.Text = "";
+                        PopulateUserCmbo();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select existing Event to Delete.");
+                }
+            }
+
         }
     }
 }

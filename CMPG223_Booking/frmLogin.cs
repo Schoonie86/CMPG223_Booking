@@ -54,6 +54,9 @@ namespace CMPG223_Booking
             this.Hide();
         }
 
-        
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace CMPG223_Booking
                 ClientCreate.email = txtBxNewEmail.Text;
                 if (txtBxNewPass.Text == txtBxConfNewPass.Text)
                 {
-                    ClientCreate.password = txtBxConfNewPass.Text;
+                    ClientCreate.password = txtBxNewPass.Text;
                     ClientCreate.CreateClient();
                     MessageBox.Show("Account created successfully.");
                 }

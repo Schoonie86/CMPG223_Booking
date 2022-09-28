@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grtBxNewSignUp = new System.Windows.Forms.GroupBox();
+            this.txtBxNewEmail = new System.Windows.Forms.TextBox();
+            this.lblNewEmail = new System.Windows.Forms.Label();
             this.txtBxNewLastName = new System.Windows.Forms.TextBox();
             this.lblNewLastName = new System.Windows.Forms.Label();
             this.txtBxConfNewPass = new System.Windows.Forms.TextBox();
@@ -39,8 +41,6 @@
             this.txtBxNewName = new System.Windows.Forms.TextBox();
             this.lblNewClintPassword = new System.Windows.Forms.Label();
             this.lblNewClient = new System.Windows.Forms.Label();
-            this.txtBxNewEmail = new System.Windows.Forms.TextBox();
-            this.lblNewEmail = new System.Windows.Forms.Label();
             this.grtBxNewSignUp.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,22 @@
             this.grtBxNewSignUp.TabStop = false;
             this.grtBxNewSignUp.Text = "New Sign up";
             this.grtBxNewSignUp.Visible = false;
+            // 
+            // txtBxNewEmail
+            // 
+            this.txtBxNewEmail.Location = new System.Drawing.Point(114, 71);
+            this.txtBxNewEmail.Name = "txtBxNewEmail";
+            this.txtBxNewEmail.Size = new System.Drawing.Size(158, 20);
+            this.txtBxNewEmail.TabIndex = 11;
+            // 
+            // lblNewEmail
+            // 
+            this.lblNewEmail.AutoSize = true;
+            this.lblNewEmail.Location = new System.Drawing.Point(6, 75);
+            this.lblNewEmail.Name = "lblNewEmail";
+            this.lblNewEmail.Size = new System.Drawing.Size(32, 13);
+            this.lblNewEmail.TabIndex = 10;
+            this.lblNewEmail.Text = "Email";
             // 
             // txtBxNewLastName
             // 
@@ -154,28 +170,14 @@
             this.lblNewClient.TabIndex = 0;
             this.lblNewClient.Text = "Name:";
             // 
-            // txtBxNewEmail
-            // 
-            this.txtBxNewEmail.Location = new System.Drawing.Point(114, 71);
-            this.txtBxNewEmail.Name = "txtBxNewEmail";
-            this.txtBxNewEmail.Size = new System.Drawing.Size(158, 20);
-            this.txtBxNewEmail.TabIndex = 11;
-            // 
-            // lblNewEmail
-            // 
-            this.lblNewEmail.AutoSize = true;
-            this.lblNewEmail.Location = new System.Drawing.Point(6, 75);
-            this.lblNewEmail.Name = "lblNewEmail";
-            this.lblNewEmail.Size = new System.Drawing.Size(32, 13);
-            this.lblNewEmail.TabIndex = 10;
-            this.lblNewEmail.Text = "Email";
-            // 
             // frmClientSignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.CancelButton = this.btnSignCancel;
             this.ClientSize = new System.Drawing.Size(306, 216);
             this.Controls.Add(this.grtBxNewSignUp);
             this.Name = "frmClientSignUp";

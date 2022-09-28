@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.grpBxLogin = new System.Windows.Forms.GroupBox();
-            this.btnSignUp = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtBxPassword = new System.Windows.Forms.TextBox();
@@ -43,7 +42,6 @@
             // 
             this.grpBxLogin.AutoSize = true;
             this.grpBxLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.grpBxLogin.Controls.Add(this.btnSignUp);
             this.grpBxLogin.Controls.Add(this.btnCancel);
             this.grpBxLogin.Controls.Add(this.btnLogin);
             this.grpBxLogin.Controls.Add(this.txtBxPassword);
@@ -57,15 +55,6 @@
             this.grpBxLogin.TabIndex = 1;
             this.grpBxLogin.TabStop = false;
             this.grpBxLogin.Text = "User Login";
-            // 
-            // btnSignUp
-            // 
-            this.btnSignUp.Location = new System.Drawing.Point(87, 74);
-            this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(75, 23);
-            this.btnSignUp.TabIndex = 6;
-            this.btnSignUp.Text = "Sign up";
-            this.btnSignUp.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
@@ -85,6 +74,7 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // txtBxPassword
             // 
@@ -125,9 +115,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(279, 145);
+            this.ClientSize = new System.Drawing.Size(281, 147);
             this.Controls.Add(this.grpBxLogin);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -142,7 +132,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox grpBxLogin;
-        private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtBxPassword;

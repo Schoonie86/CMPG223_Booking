@@ -67,7 +67,7 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDatAdap = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"UPDATE tbBooking SET UserID={userID}, ClientID = '{clientID}',EventID = '{eventID}', Approve = {bookStat}, Comments = {bookComments}) WHERE BookingID={bookID}", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"UPDATE tbBooking SET UserID = {userID}, ClientID = '{clientID}',EventID = '{eventID}', Approve = {bookStat}, Comments = {bookComments}) WHERE BookingID={bookID}", sqlConn.sqlGlbConn);
                 sqlDatAdap.UpdateCommand = sqlComm;
                 sqlDatAdap.UpdateCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
@@ -107,7 +107,7 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDatAdap = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"INSERT INTO tbBooking (UserID, ClientID, EventID) VALUE UserID={userID}, ClientID = {clientID},EventID = {eventID}, BookingID = {bookID})", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"INSERT INTO tbBooking (BookingName, UserID, ClientID, EventID, Aproved, Coments) VALUES ('{bookName}', {userID},{clientID},{eventID},'{bookStat}','{bookComments}') NOT EXISTS (SELECT * FROM tbBooking WHERE ClientID = {clientID})", sqlConn.sqlGlbConn);
                 sqlDatAdap.InsertCommand = sqlComm;
                 sqlDatAdap.InsertCommand.ExecuteNonQuery();
                 dt = new DataTable();

@@ -126,7 +126,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void UpdateUser(int userID)
+        public void UpdateUser()
         {
             try
             {
@@ -138,7 +138,7 @@ namespace CMPG223_Booking.Classes
                 sqlDatAdap.UpdateCommand = sqlComm;
                 sqlDatAdap.UpdateCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
-                MessageBox.Show("You Successfully updated the user details.");
+                MessageBox.Show("You Successfully Updated the User.");
             }
             catch (SqlException ex)
             {
@@ -172,7 +172,7 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDatAdap = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"INSERT INTO tbClient(Name, LastName, Password, Email) VALUES ('{name}','{lastName}',HASHBYTES('SHA2_512','{password}'),'{email}')", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"INSERT INTO tbClient(Name, LastName, Password, Email) VALUES ('{name}','{lastName}',HASHBYTES('SHA2_512','{password}','{email}')", sqlConn.sqlGlbConn);
                 sqlDatAdap.InsertCommand = sqlComm;
                 sqlDatAdap.InsertCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
@@ -182,7 +182,7 @@ namespace CMPG223_Booking.Classes
                 MessageBox.Show(ex.Message);
             }
         }
-        public void UpdateClient(int clientID)
+        public void UpdateClient()
         {
             try
             {
@@ -190,10 +190,11 @@ namespace CMPG223_Booking.Classes
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
                 sqlDatAdap = new SqlDataAdapter();
-                sqlComm = new SqlCommand($"UPDATE tbUser SET Name={name},LastName={lastName},Password=HASHBYTES('SHA2_512',{password}),Email={email} WHERE UserID={clientID}", sqlConn.sqlGlbConn);
+                sqlComm = new SqlCommand($"UPDATE tbClient SET Name='{name}',LastName='{lastName}',Password = HASHBYTES('SHA2_512','{password}'),Email='{email}' WHERE ClientID={clientID}", sqlConn.sqlGlbConn);
                 sqlDatAdap.UpdateCommand = sqlComm;
                 sqlDatAdap.UpdateCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You Successfully Updated the Client.");
             }
             catch (SqlException ex)
             {
@@ -204,6 +205,7 @@ namespace CMPG223_Booking.Classes
         {
             try
             {
+                
                 sqlConn = new GlobalConnection();
                 sqlConn.glbConn();
                 sqlConn.sqlGlbConn.Open();
@@ -212,6 +214,7 @@ namespace CMPG223_Booking.Classes
                 sqlDatAdap.DeleteCommand = sqlComm;
                 sqlDatAdap.DeleteCommand.ExecuteNonQuery();
                 sqlConn.sqlGlbConn.Close();
+                MessageBox.Show("You Successfully Deleted the Client.");
             }
             catch (SqlException ex)
             {

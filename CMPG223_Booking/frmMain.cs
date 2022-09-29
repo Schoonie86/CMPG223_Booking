@@ -32,7 +32,7 @@ namespace CMPG223_Booking
         }
         public void Main(string[] arg)
         {
-
+            
         }
         private void PopulateUserCmbo()
         {
@@ -283,6 +283,7 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnEdNewUserSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -313,6 +314,7 @@ namespace CMPG223_Booking
             }
 
         }
+
         private void btnEdUpdate_Click(object sender, EventArgs e)
         {
             if (cmbBxEdSlctUser.SelectedIndex >= 0)
@@ -326,7 +328,7 @@ namespace CMPG223_Booking
                     userUpObj.lastName = txtBxEdSurname.Text.Trim();
                     userUpObj.email = txtBxEdEmail.Text.Trim();
                     userUpObj.password = txtBxEdPassword.Text.Trim();
-                    userUpObj.UpdateUser(userUpObj.userID);
+                    userUpObj.UpdateUser();
                     txtBxUserID.Clear();
                     txtBxEdName.Clear();
                     txtBxEdSurname.Clear();
@@ -345,6 +347,7 @@ namespace CMPG223_Booking
                 MessageBox.Show("Please select existing user to update. To create a new account please use the submit butten.");
             }
         }
+
         private void btnEdDelete_Click(object sender, EventArgs e)
         {
             if (cmbBxEdSlctUser.SelectedIndex >= 0)
@@ -394,6 +397,7 @@ namespace CMPG223_Booking
                     txtBxEdClientSurname.Text = sqlDatRead.GetValue(2).ToString();
                     txtBxEdClientEmail.Text = sqlDatRead.GetValue(3).ToString();
                     txtBxEdClientPassword.Clear();
+                    
                 }
                 sqlConn.sqlGlbConn.Close();
 
@@ -403,6 +407,7 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnEdNewClientSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -432,6 +437,7 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnEdClientUpdate_Click(object sender, EventArgs e)
         {
             if (cmbBxEdSlctClient.SelectedIndex >= 0)
@@ -443,9 +449,9 @@ namespace CMPG223_Booking
                     clientUpObj.clientID = Convert.ToInt32(txtBxEdClientID.Text);
                     clientUpObj.name = txtBxEdClientName.Text.Trim();
                     clientUpObj.lastName = txtBxEdClientSurname.Text.Trim();
-                    clientUpObj.email = txtBxEdClientEmail.Text.Trim();
+                    clientUpObj.email = txtBxEdClientEmail.Text;
                     clientUpObj.password = txtBxEdClientPassword.Text.Trim();
-                    clientUpObj.UpdateClient(clientUpObj.clientID);
+                    clientUpObj.UpdateClient();
                     txtBxEdClientID.Clear();
                     txtBxEdClientName.Clear();
                     txtBxEdClientSurname.Clear();
@@ -465,6 +471,7 @@ namespace CMPG223_Booking
                 MessageBox.Show("Please select existing user to update. To create a new account please use the submit butten.");
             }
         }
+
         private void btnEdClientDelete_Click(object sender, EventArgs e)
         {
             if (cmbBxEdSlctClient.SelectedIndex >= 0)
@@ -492,6 +499,7 @@ namespace CMPG223_Booking
 
             }
         }
+
         private void btnEdCancel_Click(object sender, EventArgs e)
         {
             try
@@ -508,6 +516,7 @@ namespace CMPG223_Booking
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnEdClientCancel_Click(object sender, EventArgs e)
         {
             try
@@ -570,115 +579,7 @@ namespace CMPG223_Booking
             frmClientSignUp.ShowDialog();
         }
 
-        private void cmbBxSlctBooking_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                sqlConn.sqlGlbConn.Open();
-                sqlComm = new SqlCommand($"SELECT BookingID, BookingName, EventID, UserID, Aproved, Coments FROM tbBooking WHERE BookingName = '{cmbBxBookSlctBook.Text}'", sqlConn.sqlGlbConn);
-                sqlDatRead = sqlComm.ExecuteReader();
-                while (sqlDatRead.Read())
-                {
-                    txtBxBookingID.Text = sqlDatRead.GetValue(0).ToString();
-                    txtBxBookingName.Text = sqlDatRead.GetValue(1).ToString();
-                    cmbBxBookSlctEvent.Text = sqlDatRead.GetValue(2).ToString();
-                    cmbBxBookSlctTrain.Text = sqlDatRead.GetValue(3).ToString();
-                    if (sqlDatRead.GetValue(4).ToString() == "true")
-                    {
-                        radioBtnApproved.Checked = true;
-                    }
-                    else if (sqlDatRead.GetValue(4).ToString() == "false")
-                    {
-                        radioBtnNotApproved.Checked = true;
-                    }
-                    txtBxBookComments.Text = sqlDatRead.GetValue(5).ToString();
-                }
-                //sqlComm = new SqlCommand($"SELECT DISTINCT Name FROM tbBooking INNER JOIN tbClient ON tbBooking.ClientID = tbClient.ClientID WHERE BookingID = {cmbBxBookSlctBook.Text}", sqlConn.sqlGlbConn);
-                //sqlDatRead = sqlComm.ExecuteReader();
-                //while (sqlDatRead.Read())
-                //{
-                //    lstBxBookAttendees.Items.Clear();
-                //    lstBxBookAttendees.Items.Add(sqlDatRead.GetString(0));
-                //}
-                sqlConn.sqlGlbConn.Close();
-            }
-            catch(SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnAddAttendee_Click(object sender, EventArgs e)
-        {
-            lstBxBookAttendees.Items.Add(cmbBxBookSlctClient.Text.ToString());
-            //PopulateBookSlctAttendee();
-        }
-
-        private void btnBookCreate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                sqlConn = new GlobalConnection();
-                sqlConn.glbConn();
-                sqlConn.sqlGlbConn.Open();
-                sqlDatAdap = new SqlDataAdapter();
-                
-                if (cmbBxBookSlctTrain.SelectedIndex >=0)
-                {
-                    sqlComm = new SqlCommand($"SELECT UserID FROM tbUser WHERE Name = '{cmbBxBookSlctTrain.Text}'", sqlConn.sqlGlbConn);
-                    sqlDatRead = sqlComm.ExecuteReader();
-                    while (sqlDatRead.Read())
-                    {
-                        slctUID = Convert.ToInt32(sqlDatRead.GetValue(0));
-                    }
-                }
-                else if(cmbBxBookSlctClient.SelectedIndex >= 0)
-                {
-                    sqlComm = new SqlCommand($"SELECT ClientID FROM tbClient WHERE Name = '{cmbBxBookSlctClient.Text}'", sqlConn.sqlGlbConn);
-                    sqlDatRead = sqlComm.ExecuteReader();
-                    while (sqlDatRead.Read())
-                    {
-                        slctCID = Convert.ToInt32(sqlDatRead.GetValue(0));
-                    }
-                }
-                else if (cmbBxBookSlctEvent.SelectedIndex >= 0)
-                {
-                    sqlComm = new SqlCommand($"SELECT EventID FROM tbEvent WHERE Name = '{cmbBxBookSlctEvent.Text}'", sqlConn.sqlGlbConn);
-                    sqlDatRead = sqlComm.ExecuteReader();
-                    while(sqlDatRead.Read())
-                    {
-                        slctEID = Convert.ToInt32(sqlDatRead.GetValue(0));
-                    }
-                }
-                if (radioBtnApproved.Checked)
-                {
-                    slctBookStat = true;
-                }
-                else if (radioBtnNotApproved.Checked)
-                {
-                    slctBookStat = false;
-                }
-                if (cmbBxBookSlctBook.SelectedIndex == -1)
-                {
-                    BookingClass bookObj = new BookingClass();
-                    bookObj.bookName = txtBxBookingName.Text;
-                    bookObj.userID = slctUID;
-                    bookObj.clientID = slctCID;
-                    bookObj.eventID = slctEID;
-                    bookObj.bookStat = slctBookStat;
-                    bookObj.bookComments = txtBxBookComments.Text;
-                    bookObj.CreatBooking();
-                }
-                else
-                {
-                    MessageBox.Show("Please Check all fields.");
-                }
-            }
-            catch(SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -738,5 +639,329 @@ namespace CMPG223_Booking
         {
             tabCtrlMain.SelectTab(tabPgReporting);
         }
+
+        private void cmbBxSlctEvent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = new SqlCommand($"SELECT EventID, Name, Type, EventStartDate, EventEndDate, EventStartTime, EventEndTime, Discription FROM tbEvent WHERE Name = '{cmbBxSlctEvent.Text}'", sqlConn.sqlGlbConn);
+                sqlDatRead = sqlComm.ExecuteReader();
+                while (sqlDatRead.Read())
+                {
+                    txtBxEventID.Text = sqlDatRead.GetValue(0).ToString();
+                    txtBxEventName.Text = sqlDatRead.GetValue(1).ToString();
+                    if (sqlDatRead.GetValue(2).ToString() == "False")
+                    {
+                        radioBtnTraining.Checked = true;
+                    }
+                    else if (sqlDatRead.GetValue(2).ToString() == "True")
+                    {
+                        radioBtnExam.Checked = true;
+                    }
+                    
+                    dtPckrEventStartDate.Text = sqlDatRead.GetValue(3).ToString();
+                    dtPckrEventEndDate.Text = sqlDatRead.GetValue(4).ToString();
+                    cmbBxEventStartTime.Text = sqlDatRead.GetValue(5).ToString();
+                    cmbBxEventEndTime.Text = sqlDatRead.GetValue(6).ToString();
+                    txtBxEventDiscrip.Text = sqlDatRead.GetValue(7).ToString();
+                }
+                sqlConn.sqlGlbConn.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnNewEventSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbBxSlctEvent.SelectedIndex == -1)
+                {
+                    EventClass evnetAddObj = new EventClass();
+                    evnetAddObj.EventName = txtBxEventName.Text;
+                    if (radioBtnTraining.Checked == true)
+                    {
+                        evnetAddObj.EventType = false;
+                    }
+                    else if (radioBtnExam.Checked == true)
+                    {
+                        evnetAddObj.EventType = true;
+                    }
+                    evnetAddObj.EventDiscription = txtBxEventDiscrip.Text;
+                    evnetAddObj.EventStartDate = dtPckrEventStartDate.Value;
+                    evnetAddObj.EventEndDate = dtPckrEventEndDate.Value;
+                    evnetAddObj.EventStartTime = DateTime.Parse(DateTime.Parse(cmbBxEventStartTime.Text).ToString("hh:mm").ToString());
+                    evnetAddObj.EventEndTime = DateTime.Parse(DateTime.Parse(cmbBxEventEndTime.Text).ToString("hh:mm").ToString());
+                    evnetAddObj.CreateEvent();
+                    txtBxEventName.Clear();
+                    radioBtnExam.Checked = false;
+                    radioBtnTraining.Checked = false;
+                    txtBxEventDiscrip.Clear();
+                    cmbBxEventStartTime = null;
+                    cmbBxEventEndTime.SelectedIndex = -1;
+                    PopulateSlctEvent();
+                }
+                else
+                {
+                    MessageBox.Show("Event already exist");
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEventUpdate_Click(object sender, EventArgs e)
+        {
+            int EventIndex = cmbBxBookSlctEvent.SelectedIndex;
+            try
+            {
+                if (cmbBxSlctEvent.SelectedIndex >= 0)
+                {
+                    EventClass evnetUpdateObj = new EventClass();
+                    evnetUpdateObj.EventName = txtBxEventName.Text;
+                    if (radioBtnTraining.Checked == true)
+                    {
+                        evnetUpdateObj.EventType = false;
+                    }
+                    else
+                    {
+                        evnetUpdateObj.EventType = true;
+                    }
+                    evnetUpdateObj.EventDiscription = txtBxEventDiscrip.Text;
+                    evnetUpdateObj.EventStartDate = dtPckrEventStartDate.Value;
+                    evnetUpdateObj.EventEndDate = dtPckrEventEndDate.Value;
+                    evnetUpdateObj.EventStartTime = DateTime.Parse(DateTime.Parse(cmbBxEventStartTime.Text).ToString("hh:mm").ToString());
+                    evnetUpdateObj.EventEndTime = DateTime.Parse(DateTime.Parse(cmbBxEventEndTime.Text).ToString("hh:mm").ToString());
+                    evnetUpdateObj.UpdateEvent();
+                    PopulateSlctEvent();
+                    cmbBxBookSlctEvent.SelectedIndex = EventIndex;
+                }
+                else
+                {
+                    MessageBox.Show("Event already exist");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        
+        private void btnEventDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EventClass eventDelObj = new EventClass();
+                eventDelObj.EventID = Convert.ToInt32(txtBxEventID.Text.ToString());
+                eventDelObj.DeleteEvent();
+                txtBxEventName.Clear();
+                radioBtnExam.Checked = false;
+                radioBtnTraining.Checked = false;
+                txtBxEventDiscrip.Clear();
+                cmbBxEventStartTime.SelectedIndex = 0;
+                cmbBxEventEndTime.SelectedIndex = 0;
+                PopulateSlctEvent();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEventCancle_Click(object sender, EventArgs e)
+        {
+            txtBxEventName.Clear();
+            txtBxEventID.Clear();
+            radioBtnExam.Checked = false;
+            radioBtnTraining.Checked = false;
+            txtBxEventDiscrip.Clear();
+            cmbBxEventStartTime.SelectedIndex = 0;
+            cmbBxEventEndTime.SelectedIndex = 0;
+            PopulateSlctEvent();
+        }
+
+        private void cmbBxSlctBooking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn.sqlGlbConn.Open();
+                sqlComm = new SqlCommand($"SELECT BookingID, BookingName, EventID, UserID, Aproved, Coments FROM tbBooking WHERE BookingName = '{cmbBxBookSlctBook.Text}'", sqlConn.sqlGlbConn);
+                sqlDatRead = sqlComm.ExecuteReader();
+                while (sqlDatRead.Read())
+                {
+                    txtBxBookingID.Text = sqlDatRead.GetValue(0).ToString();
+                    txtBxBookingName.Text = sqlDatRead.GetValue(1).ToString();
+                    cmbBxBookSlctEvent.Text = sqlDatRead.GetValue(2).ToString();
+                    cmbBxBookSlctTrain.Text = sqlDatRead.GetValue(3).ToString();
+                    if (sqlDatRead.GetValue(4).ToString() == "true")
+                    {
+                        radioBtnApproved.Checked = true;
+                    }
+                    else if (sqlDatRead.GetValue(4).ToString() == "false")
+                    {
+                        radioBtnNotApproved.Checked = true;
+                    }
+                    txtBxBookComments.Text = sqlDatRead.GetValue(5).ToString();
+                }
+
+                sqlConn.sqlGlbConn.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnAddAttendee_Click(object sender, EventArgs e)
+        {
+            lstBxBookAttendees.Items.Add(cmbBxBookSlctClient.Text.ToString());
+            //PopulateBookSlctAttendee();
+        }
+
+        private void btnBookCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn = new GlobalConnection();
+                sqlConn.glbConn();
+                sqlConn.sqlGlbConn.Open();
+                sqlDatAdap = new SqlDataAdapter();
+
+                if (cmbBxBookSlctTrain.SelectedIndex >= 0)
+                {
+                    sqlComm = new SqlCommand($"SELECT UserID FROM tbUser WHERE Name = '{cmbBxBookSlctTrain.Text}'", sqlConn.sqlGlbConn);
+                    sqlDatRead = sqlComm.ExecuteReader();
+                    while (sqlDatRead.Read())
+                    {
+                        slctUID = Convert.ToInt32(sqlDatRead.GetValue(0));
+                    }
+                }
+                else if (cmbBxBookSlctClient.SelectedIndex >= 0)
+                {
+                    sqlComm = new SqlCommand($"SELECT ClientID FROM tbClient WHERE Name = '{cmbBxBookSlctClient.Text}'", sqlConn.sqlGlbConn);
+                    sqlDatRead = sqlComm.ExecuteReader();
+                    while (sqlDatRead.Read())
+                    {
+                        slctCID = Convert.ToInt32(sqlDatRead.GetValue(0));
+                    }
+                }
+                else if (cmbBxBookSlctEvent.SelectedIndex >= 0)
+                {
+                    sqlComm = new SqlCommand($"SELECT EventID FROM tbEvent WHERE Name = '{cmbBxBookSlctEvent.Text}'", sqlConn.sqlGlbConn);
+                    sqlDatRead = sqlComm.ExecuteReader();
+                    while (sqlDatRead.Read())
+                    {
+                        slctEID = Convert.ToInt32(sqlDatRead.GetValue(0));
+                    }
+                }
+                if (radioBtnApproved.Checked)
+                {
+                    slctBookStat = true;
+                }
+                else if (radioBtnNotApproved.Checked)
+                {
+                    slctBookStat = false;
+                }
+                if (cmbBxBookSlctBook.SelectedIndex == -1)
+                {
+                    BookingClass bookObj = new BookingClass();
+                    bookObj.bookName = txtBxBookingName.Text;
+                    bookObj.userID = slctUID;
+                    bookObj.clientID = slctCID;
+                    bookObj.eventID = slctEID;
+                    bookObj.bookStat = slctBookStat;
+                    bookObj.bookComments = txtBxBookComments.Text;
+                    bookObj.CreatBooking();
+                }
+                else
+                {
+                    MessageBox.Show("Please Check all fields.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+               
+        private void btnBookUpdate_Click(object sender, EventArgs e)
+        {
+            int BID = cmbBxBookSlctBook.SelectedIndex;
+            try
+            {
+                BookingClass UpDatBookObj = new BookingClass();
+                UpDatBookObj.bookID = Convert.ToInt32(txtBxBookingID.Text.ToString());
+                UpDatBookObj.eventID = Convert.ToInt32(cmbBxBookSlctEvent.Text.ToString());
+                UpDatBookObj.userID = Convert.ToInt32(cmbBxBookSlctTrain.Text.ToString());
+                UpDatBookObj.clientID = Convert.ToInt32(lstBxBookAttendees.Text.ToString());
+                UpDatBookObj.bookName = txtBxBookingName.Text.ToString();
+                UpDatBookObj.bookComments = txtBxBookComments.Text.ToString();
+                UpDatBookObj.UpdateBooking();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            PopulateSlctBook();
+            PopulateBookSlctEvent();
+            PopulateBookSlctTrain();
+            PopulateBookSlctAttendee();
+            cmbBxBookSlctBook.SelectedIndex = BID;
+        }
+
+
+        private void btnBookApply_Click(object sender, EventArgs e)
+        {
+            BookingClass applyBookObj = new BookingClass();
+            applyBookObj.bookID = Convert.ToInt32(txtBxBookingID.Text.ToString());
+            applyBookObj.clientID = Convert.ToInt32(cmbBxBookSlctClient.Text.ToString());
+            applyBookObj.userID = Convert.ToInt32(cmbBxBookSlctTrain.Text.ToString());
+
+        }
+
+        private void btnBookCancel_Click(object sender, EventArgs e)
+        {
+            PopulateSlctBook();
+            PopulateBookSlctEvent();
+            PopulateBookSlctTrain();
+            PopulateBookSlctAttendee();
+            txtBxBookingName.Clear();
+            lstBxBookAttendees.Items.Clear();
+            txtBxBookComments.Clear();
+            txtBxBookingID.Clear();
+        }
+
+        private void btnBookDelet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BookingClass DelBookObj = new BookingClass();
+                DelBookObj.bookID = Convert.ToInt32(txtBxBookingID.ToString());
+                DelBookObj.DeleteBooking();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            PopulateSlctBook();
+            PopulateBookSlctEvent();
+            PopulateBookSlctTrain();
+            PopulateBookSlctAttendee();
+            txtBxBookingID.Clear();
+            txtBxBookingName.Clear();
+            txtBxBookComments.Clear();
+            lstBxBookAttendees.Items.Clear();
+        }
+
+        
     }
+
 }

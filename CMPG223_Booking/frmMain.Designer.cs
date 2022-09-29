@@ -78,6 +78,8 @@
             this.lblEdClientSername = new System.Windows.Forms.Label();
             this.tabPgEvent = new System.Windows.Forms.TabPage();
             this.grpBxEvent = new System.Windows.Forms.GroupBox();
+            this.lblEventDiscr = new System.Windows.Forms.Label();
+            this.txtBxEventDiscrip = new System.Windows.Forms.TextBox();
             this.dtPckrEventEndDate = new System.Windows.Forms.DateTimePicker();
             this.lblEventEndDate = new System.Windows.Forms.Label();
             this.cmbBxEventEndTime = new System.Windows.Forms.ComboBox();
@@ -101,6 +103,7 @@
             this.lblEventID = new System.Windows.Forms.Label();
             this.tabPgBooking = new System.Windows.Forms.TabPage();
             this.grpBxBooking = new System.Windows.Forms.GroupBox();
+            this.btnBookDelet = new System.Windows.Forms.Button();
             this.lstBxBookAttendees = new System.Windows.Forms.ListBox();
             this.txtBxBookingName = new System.Windows.Forms.TextBox();
             this.lblBookingName = new System.Windows.Forms.Label();
@@ -127,18 +130,21 @@
             this.lblBookingID = new System.Windows.Forms.Label();
             this.tabPgReporting = new System.Windows.Forms.TabPage();
             this.grpBxReporting = new System.Windows.Forms.GroupBox();
-            this.listBox4 = new System.Windows.Forms.ListBox();
-            this.listBox3 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRprtGenerate = new System.Windows.Forms.Button();
+            this.grpBxDataView = new System.Windows.Forms.GroupBox();
+            this.dtgrvRprt = new System.Windows.Forms.DataGridView();
+            this.grpBxRprtType = new System.Windows.Forms.GroupBox();
+            this.radioBtnRprtTypeDetaild = new System.Windows.Forms.RadioButton();
+            this.radioBtnRprtTypeSummery = new System.Windows.Forms.RadioButton();
+            this.grpBxRprtDate = new System.Windows.Forms.GroupBox();
+            this.lblRprtEndDate = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.lblRprtStartDate = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.grpBxEvents = new System.Windows.Forms.GroupBox();
+            this.radioBtnRprtEventAll = new System.Windows.Forms.RadioButton();
+            this.radioBtnRprtEventExams = new System.Windows.Forms.RadioButton();
+            this.radioBtnRprtEventTrain = new System.Windows.Forms.RadioButton();
             this.grtBxNewSignUp = new System.Windows.Forms.GroupBox();
             this.btnSignUp = new System.Windows.Forms.Button();
             this.btnSignCancel = new System.Windows.Forms.Button();
@@ -157,6 +163,11 @@
             this.grpBxBooking.SuspendLayout();
             this.tabPgReporting.SuspendLayout();
             this.grpBxReporting.SuspendLayout();
+            this.grpBxDataView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgrvRprt)).BeginInit();
+            this.grpBxRprtType.SuspendLayout();
+            this.grpBxRprtDate.SuspendLayout();
+            this.grpBxEvents.SuspendLayout();
             this.grtBxNewSignUp.SuspendLayout();
             this.grpBxLogin.SuspendLayout();
             this.SuspendLayout();
@@ -266,7 +277,6 @@
             this.tabCtrlMain.SelectedIndex = 0;
             this.tabCtrlMain.Size = new System.Drawing.Size(693, 439);
             this.tabCtrlMain.TabIndex = 1;
-            this.tabCtrlMain.Visible = false;
             // 
             // tabPgUser
             // 
@@ -299,11 +309,12 @@
             this.grpBxEdUser.Controls.Add(this.txtBxEdSurname);
             this.grpBxEdUser.Controls.Add(this.txtBxEdName);
             this.grpBxEdUser.Controls.Add(this.lblEdSername);
-            this.grpBxEdUser.Location = new System.Drawing.Point(5, 5);
+            this.grpBxEdUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBxEdUser.Location = new System.Drawing.Point(3, 3);
             this.grpBxEdUser.Margin = new System.Windows.Forms.Padding(2);
             this.grpBxEdUser.Name = "grpBxEdUser";
             this.grpBxEdUser.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBxEdUser.Size = new System.Drawing.Size(651, 160);
+            this.grpBxEdUser.Size = new System.Drawing.Size(679, 407);
             this.grpBxEdUser.TabIndex = 12;
             this.grpBxEdUser.TabStop = false;
             this.grpBxEdUser.Text = "User";
@@ -319,10 +330,10 @@
             // 
             // btnEdDelete
             // 
-            this.btnEdDelete.Location = new System.Drawing.Point(239, 124);
+            this.btnEdDelete.Location = new System.Drawing.Point(243, 378);
             this.btnEdDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdDelete.Name = "btnEdDelete";
-            this.btnEdDelete.Size = new System.Drawing.Size(91, 19);
+            this.btnEdDelete.Size = new System.Drawing.Size(91, 25);
             this.btnEdDelete.TabIndex = 14;
             this.btnEdDelete.Text = "Delete";
             this.btnEdDelete.UseVisualStyleBackColor = true;
@@ -330,10 +341,10 @@
             // 
             // btnEdNewUserSubmit
             // 
-            this.btnEdNewUserSubmit.Location = new System.Drawing.Point(4, 124);
+            this.btnEdNewUserSubmit.Location = new System.Drawing.Point(8, 378);
             this.btnEdNewUserSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdNewUserSubmit.Name = "btnEdNewUserSubmit";
-            this.btnEdNewUserSubmit.Size = new System.Drawing.Size(91, 19);
+            this.btnEdNewUserSubmit.Size = new System.Drawing.Size(91, 25);
             this.btnEdNewUserSubmit.TabIndex = 13;
             this.btnEdNewUserSubmit.Text = "Create";
             this.btnEdNewUserSubmit.UseVisualStyleBackColor = true;
@@ -341,10 +352,10 @@
             // 
             // btnEdCancel
             // 
-            this.btnEdCancel.Location = new System.Drawing.Point(556, 124);
+            this.btnEdCancel.Location = new System.Drawing.Point(560, 378);
             this.btnEdCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdCancel.Name = "btnEdCancel";
-            this.btnEdCancel.Size = new System.Drawing.Size(91, 19);
+            this.btnEdCancel.Size = new System.Drawing.Size(91, 25);
             this.btnEdCancel.TabIndex = 13;
             this.btnEdCancel.Text = "Cancel";
             this.btnEdCancel.UseVisualStyleBackColor = true;
@@ -352,10 +363,10 @@
             // 
             // btnEdUpdate
             // 
-            this.btnEdUpdate.Location = new System.Drawing.Point(115, 124);
+            this.btnEdUpdate.Location = new System.Drawing.Point(119, 378);
             this.btnEdUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdUpdate.Name = "btnEdUpdate";
-            this.btnEdUpdate.Size = new System.Drawing.Size(91, 19);
+            this.btnEdUpdate.Size = new System.Drawing.Size(91, 25);
             this.btnEdUpdate.TabIndex = 12;
             this.btnEdUpdate.Text = "Update";
             this.btnEdUpdate.UseVisualStyleBackColor = true;
@@ -493,11 +504,12 @@
             this.grpBxEdClient.Controls.Add(this.txtBxEdClientSurname);
             this.grpBxEdClient.Controls.Add(this.txtBxEdClientName);
             this.grpBxEdClient.Controls.Add(this.lblEdClientSername);
-            this.grpBxEdClient.Location = new System.Drawing.Point(5, 5);
+            this.grpBxEdClient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBxEdClient.Location = new System.Drawing.Point(3, 3);
             this.grpBxEdClient.Margin = new System.Windows.Forms.Padding(2);
             this.grpBxEdClient.Name = "grpBxEdClient";
             this.grpBxEdClient.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBxEdClient.Size = new System.Drawing.Size(651, 160);
+            this.grpBxEdClient.Size = new System.Drawing.Size(679, 407);
             this.grpBxEdClient.TabIndex = 13;
             this.grpBxEdClient.TabStop = false;
             this.grpBxEdClient.Text = "Client";
@@ -533,10 +545,10 @@
             // 
             // btnEdClientDelete
             // 
-            this.btnEdClientDelete.Location = new System.Drawing.Point(239, 124);
+            this.btnEdClientDelete.Location = new System.Drawing.Point(242, 378);
             this.btnEdClientDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdClientDelete.Name = "btnEdClientDelete";
-            this.btnEdClientDelete.Size = new System.Drawing.Size(91, 19);
+            this.btnEdClientDelete.Size = new System.Drawing.Size(91, 25);
             this.btnEdClientDelete.TabIndex = 14;
             this.btnEdClientDelete.Text = "Delete";
             this.btnEdClientDelete.UseVisualStyleBackColor = true;
@@ -544,10 +556,10 @@
             // 
             // btnEdNewClientSubmit
             // 
-            this.btnEdNewClientSubmit.Location = new System.Drawing.Point(5, 124);
+            this.btnEdNewClientSubmit.Location = new System.Drawing.Point(8, 378);
             this.btnEdNewClientSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdNewClientSubmit.Name = "btnEdNewClientSubmit";
-            this.btnEdNewClientSubmit.Size = new System.Drawing.Size(91, 19);
+            this.btnEdNewClientSubmit.Size = new System.Drawing.Size(91, 25);
             this.btnEdNewClientSubmit.TabIndex = 13;
             this.btnEdNewClientSubmit.Text = "Create";
             this.btnEdNewClientSubmit.UseVisualStyleBackColor = true;
@@ -555,10 +567,10 @@
             // 
             // btnEdClientCancel
             // 
-            this.btnEdClientCancel.Location = new System.Drawing.Point(556, 124);
+            this.btnEdClientCancel.Location = new System.Drawing.Point(559, 378);
             this.btnEdClientCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdClientCancel.Name = "btnEdClientCancel";
-            this.btnEdClientCancel.Size = new System.Drawing.Size(91, 19);
+            this.btnEdClientCancel.Size = new System.Drawing.Size(91, 25);
             this.btnEdClientCancel.TabIndex = 13;
             this.btnEdClientCancel.Text = "Cancel";
             this.btnEdClientCancel.UseVisualStyleBackColor = true;
@@ -566,10 +578,10 @@
             // 
             // btnEdClientUpdate
             // 
-            this.btnEdClientUpdate.Location = new System.Drawing.Point(115, 124);
+            this.btnEdClientUpdate.Location = new System.Drawing.Point(118, 378);
             this.btnEdClientUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnEdClientUpdate.Name = "btnEdClientUpdate";
-            this.btnEdClientUpdate.Size = new System.Drawing.Size(91, 19);
+            this.btnEdClientUpdate.Size = new System.Drawing.Size(91, 25);
             this.btnEdClientUpdate.TabIndex = 12;
             this.btnEdClientUpdate.Text = "Update";
             this.btnEdClientUpdate.UseVisualStyleBackColor = true;
@@ -671,6 +683,8 @@
             // 
             this.grpBxEvent.AutoSize = true;
             this.grpBxEvent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpBxEvent.Controls.Add(this.lblEventDiscr);
+            this.grpBxEvent.Controls.Add(this.txtBxEventDiscrip);
             this.grpBxEvent.Controls.Add(this.dtPckrEventEndDate);
             this.grpBxEvent.Controls.Add(this.lblEventEndDate);
             this.grpBxEvent.Controls.Add(this.cmbBxEventEndTime);
@@ -704,6 +718,24 @@
             this.grpBxEvent.TabStop = false;
             this.grpBxEvent.Text = "Events";
             // 
+            // lblEventDiscr
+            // 
+            this.lblEventDiscr.AutoSize = true;
+            this.lblEventDiscr.Location = new System.Drawing.Point(12, 127);
+            this.lblEventDiscr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblEventDiscr.Name = "lblEventDiscr";
+            this.lblEventDiscr.Size = new System.Drawing.Size(56, 13);
+            this.lblEventDiscr.TabIndex = 33;
+            this.lblEventDiscr.Text = "Discription";
+            // 
+            // txtBxEventDiscrip
+            // 
+            this.txtBxEventDiscrip.Location = new System.Drawing.Point(135, 124);
+            this.txtBxEventDiscrip.Multiline = true;
+            this.txtBxEventDiscrip.Name = "txtBxEventDiscrip";
+            this.txtBxEventDiscrip.Size = new System.Drawing.Size(532, 104);
+            this.txtBxEventDiscrip.TabIndex = 32;
+            // 
             // dtPckrEventEndDate
             // 
             this.dtPckrEventEndDate.Location = new System.Drawing.Point(469, 68);
@@ -711,7 +743,7 @@
             this.dtPckrEventEndDate.Name = "dtPckrEventEndDate";
             this.dtPckrEventEndDate.Size = new System.Drawing.Size(198, 20);
             this.dtPckrEventEndDate.TabIndex = 31;
-            this.dtPckrEventEndDate.Value = new System.DateTime(2022, 9, 13, 0, 0, 0, 0);
+            this.dtPckrEventEndDate.Value = new System.DateTime(2022, 9, 29, 0, 0, 0, 0);
             // 
             // lblEventEndDate
             // 
@@ -805,6 +837,7 @@
             this.cmbBxSlctEvent.Name = "cmbBxSlctEvent";
             this.cmbBxSlctEvent.Size = new System.Drawing.Size(197, 21);
             this.cmbBxSlctEvent.TabIndex = 25;
+            this.cmbBxSlctEvent.SelectedIndexChanged += new System.EventHandler(this.cmbBxSlctEvent_SelectedIndexChanged);
             // 
             // lblEventEndTime
             // 
@@ -841,47 +874,51 @@
             this.dtPckrEventStartDate.Name = "dtPckrEventStartDate";
             this.dtPckrEventStartDate.Size = new System.Drawing.Size(198, 20);
             this.dtPckrEventStartDate.TabIndex = 19;
-            this.dtPckrEventStartDate.Value = new System.DateTime(2022, 9, 13, 0, 0, 0, 0);
+            this.dtPckrEventStartDate.Value = new System.DateTime(2022, 9, 29, 0, 0, 0, 0);
             // 
             // btnEventDelete
             // 
-            this.btnEventDelete.Location = new System.Drawing.Point(242, 119);
+            this.btnEventDelete.Location = new System.Drawing.Point(242, 376);
             this.btnEventDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnEventDelete.Name = "btnEventDelete";
-            this.btnEventDelete.Size = new System.Drawing.Size(91, 19);
+            this.btnEventDelete.Size = new System.Drawing.Size(91, 27);
             this.btnEventDelete.TabIndex = 18;
             this.btnEventDelete.Text = "Delete";
             this.btnEventDelete.UseVisualStyleBackColor = true;
+            this.btnEventDelete.Click += new System.EventHandler(this.btnEventDelete_Click);
             // 
             // btnNewEventSubmit
             // 
-            this.btnNewEventSubmit.Location = new System.Drawing.Point(1, 119);
+            this.btnNewEventSubmit.Location = new System.Drawing.Point(15, 376);
             this.btnNewEventSubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnNewEventSubmit.Name = "btnNewEventSubmit";
-            this.btnNewEventSubmit.Size = new System.Drawing.Size(97, 19);
+            this.btnNewEventSubmit.Size = new System.Drawing.Size(97, 27);
             this.btnNewEventSubmit.TabIndex = 16;
             this.btnNewEventSubmit.Text = "Create";
             this.btnNewEventSubmit.UseVisualStyleBackColor = true;
+            this.btnNewEventSubmit.Click += new System.EventHandler(this.btnNewEventSubmit_Click);
             // 
             // btnEventCancle
             // 
-            this.btnEventCancle.Location = new System.Drawing.Point(576, 119);
+            this.btnEventCancle.Location = new System.Drawing.Point(576, 376);
             this.btnEventCancle.Margin = new System.Windows.Forms.Padding(2);
             this.btnEventCancle.Name = "btnEventCancle";
-            this.btnEventCancle.Size = new System.Drawing.Size(91, 19);
+            this.btnEventCancle.Size = new System.Drawing.Size(91, 27);
             this.btnEventCancle.TabIndex = 17;
             this.btnEventCancle.Text = "Cancel";
             this.btnEventCancle.UseVisualStyleBackColor = true;
+            this.btnEventCancle.Click += new System.EventHandler(this.btnEventCancle_Click);
             // 
             // btnEventUpdate
             // 
-            this.btnEventUpdate.Location = new System.Drawing.Point(135, 119);
+            this.btnEventUpdate.Location = new System.Drawing.Point(135, 376);
             this.btnEventUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnEventUpdate.Name = "btnEventUpdate";
-            this.btnEventUpdate.Size = new System.Drawing.Size(91, 19);
+            this.btnEventUpdate.Size = new System.Drawing.Size(91, 27);
             this.btnEventUpdate.TabIndex = 15;
             this.btnEventUpdate.Text = "Update";
             this.btnEventUpdate.UseVisualStyleBackColor = true;
+            this.btnEventUpdate.Click += new System.EventHandler(this.btnEventUpdate_Click);
             // 
             // lblEventStartDate
             // 
@@ -927,6 +964,7 @@
             this.txtBxEventID.Location = new System.Drawing.Point(469, 19);
             this.txtBxEventID.Margin = new System.Windows.Forms.Padding(2);
             this.txtBxEventID.Name = "txtBxEventID";
+            this.txtBxEventID.ReadOnly = true;
             this.txtBxEventID.Size = new System.Drawing.Size(198, 20);
             this.txtBxEventID.TabIndex = 1;
             // 
@@ -953,6 +991,7 @@
             // 
             // grpBxBooking
             // 
+            this.grpBxBooking.Controls.Add(this.btnBookDelet);
             this.grpBxBooking.Controls.Add(this.lstBxBookAttendees);
             this.grpBxBooking.Controls.Add(this.txtBxBookingName);
             this.grpBxBooking.Controls.Add(this.lblBookingName);
@@ -985,6 +1024,16 @@
             this.grpBxBooking.TabIndex = 0;
             this.grpBxBooking.TabStop = false;
             this.grpBxBooking.Text = "Bookings";
+            // 
+            // btnBookDelet
+            // 
+            this.btnBookDelet.Location = new System.Drawing.Point(170, 364);
+            this.btnBookDelet.Name = "btnBookDelet";
+            this.btnBookDelet.Size = new System.Drawing.Size(75, 30);
+            this.btnBookDelet.TabIndex = 51;
+            this.btnBookDelet.Text = "Delete";
+            this.btnBookDelet.UseVisualStyleBackColor = true;
+            this.btnBookDelet.Click += new System.EventHandler(this.btnBookDelet_Click);
             // 
             // lstBxBookAttendees
             // 
@@ -1045,36 +1094,39 @@
             // 
             // btnBookApply
             // 
-            this.btnBookApply.Location = new System.Drawing.Point(501, 362);
+            this.btnBookApply.Location = new System.Drawing.Point(501, 364);
             this.btnBookApply.Name = "btnBookApply";
-            this.btnBookApply.Size = new System.Drawing.Size(75, 23);
+            this.btnBookApply.Size = new System.Drawing.Size(75, 30);
             this.btnBookApply.TabIndex = 43;
             this.btnBookApply.Text = "Apply";
             this.btnBookApply.UseVisualStyleBackColor = true;
+            this.btnBookApply.Click += new System.EventHandler(this.btnBookApply_Click);
             // 
             // btnBookCancel
             // 
-            this.btnBookCancel.Location = new System.Drawing.Point(582, 362);
+            this.btnBookCancel.Location = new System.Drawing.Point(582, 364);
             this.btnBookCancel.Name = "btnBookCancel";
-            this.btnBookCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnBookCancel.Size = new System.Drawing.Size(75, 30);
             this.btnBookCancel.TabIndex = 42;
             this.btnBookCancel.Text = "Cancle";
             this.btnBookCancel.UseVisualStyleBackColor = true;
+            this.btnBookCancel.Click += new System.EventHandler(this.btnBookCancel_Click);
             // 
             // btnBookUpdate
             // 
-            this.btnBookUpdate.Location = new System.Drawing.Point(81, 362);
+            this.btnBookUpdate.Location = new System.Drawing.Point(89, 364);
             this.btnBookUpdate.Name = "btnBookUpdate";
-            this.btnBookUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnBookUpdate.Size = new System.Drawing.Size(75, 30);
             this.btnBookUpdate.TabIndex = 41;
             this.btnBookUpdate.Text = "Update";
             this.btnBookUpdate.UseVisualStyleBackColor = true;
+            this.btnBookUpdate.Click += new System.EventHandler(this.btnBookUpdate_Click);
             // 
             // btnBookCreate
             // 
-            this.btnBookCreate.Location = new System.Drawing.Point(0, 362);
+            this.btnBookCreate.Location = new System.Drawing.Point(8, 364);
             this.btnBookCreate.Name = "btnBookCreate";
-            this.btnBookCreate.Size = new System.Drawing.Size(75, 23);
+            this.btnBookCreate.Size = new System.Drawing.Size(75, 30);
             this.btnBookCreate.TabIndex = 40;
             this.btnBookCreate.Text = "Create";
             this.btnBookCreate.UseVisualStyleBackColor = true;
@@ -1083,13 +1135,11 @@
             // radioBtnNotApproved
             // 
             this.radioBtnNotApproved.AutoSize = true;
-            this.radioBtnNotApproved.Checked = true;
             this.radioBtnNotApproved.Location = new System.Drawing.Point(445, 147);
             this.radioBtnNotApproved.Margin = new System.Windows.Forms.Padding(2);
             this.radioBtnNotApproved.Name = "radioBtnNotApproved";
             this.radioBtnNotApproved.Size = new System.Drawing.Size(141, 17);
             this.radioBtnNotApproved.TabIndex = 39;
-            this.radioBtnNotApproved.TabStop = true;
             this.radioBtnNotApproved.Text = "Pending / Not Approved";
             this.radioBtnNotApproved.UseVisualStyleBackColor = true;
             // 
@@ -1233,142 +1283,175 @@
             // 
             // grpBxReporting
             // 
-            this.grpBxReporting.Controls.Add(this.listBox4);
-            this.grpBxReporting.Controls.Add(this.listBox3);
-            this.grpBxReporting.Controls.Add(this.listBox2);
-            this.grpBxReporting.Controls.Add(this.listBox1);
-            this.grpBxReporting.Controls.Add(this.label6);
-            this.grpBxReporting.Controls.Add(this.label5);
-            this.grpBxReporting.Controls.Add(this.label4);
-            this.grpBxReporting.Controls.Add(this.label1);
-            this.grpBxReporting.Controls.Add(this.button4);
-            this.grpBxReporting.Controls.Add(this.button3);
-            this.grpBxReporting.Controls.Add(this.button2);
-            this.grpBxReporting.Controls.Add(this.button1);
-            this.grpBxReporting.Location = new System.Drawing.Point(6, 6);
+            this.grpBxReporting.Controls.Add(this.btnRprtGenerate);
+            this.grpBxReporting.Controls.Add(this.grpBxDataView);
+            this.grpBxReporting.Controls.Add(this.grpBxRprtType);
+            this.grpBxReporting.Controls.Add(this.grpBxRprtDate);
+            this.grpBxReporting.Controls.Add(this.grpBxEvents);
+            this.grpBxReporting.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBxReporting.Location = new System.Drawing.Point(3, 3);
             this.grpBxReporting.Margin = new System.Windows.Forms.Padding(2);
             this.grpBxReporting.Name = "grpBxReporting";
             this.grpBxReporting.Padding = new System.Windows.Forms.Padding(2);
-            this.grpBxReporting.Size = new System.Drawing.Size(728, 433);
+            this.grpBxReporting.Size = new System.Drawing.Size(679, 407);
             this.grpBxReporting.TabIndex = 0;
             this.grpBxReporting.TabStop = false;
             this.grpBxReporting.Text = "Reporting";
             // 
-            // listBox4
+            // btnRprtGenerate
             // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.Location = new System.Drawing.Point(362, 260);
-            this.listBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(344, 173);
-            this.listBox4.TabIndex = 11;
+            this.btnRprtGenerate.Location = new System.Drawing.Point(6, 147);
+            this.btnRprtGenerate.Name = "btnRprtGenerate";
+            this.btnRprtGenerate.Size = new System.Drawing.Size(84, 30);
+            this.btnRprtGenerate.TabIndex = 4;
+            this.btnRprtGenerate.Text = "Generate";
+            this.btnRprtGenerate.UseVisualStyleBackColor = true;
             // 
-            // listBox3
+            // grpBxDataView
             // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(362, 63);
-            this.listBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(344, 173);
-            this.listBox3.TabIndex = 10;
+            this.grpBxDataView.Controls.Add(this.dtgrvRprt);
+            this.grpBxDataView.Location = new System.Drawing.Point(5, 183);
+            this.grpBxDataView.Name = "grpBxDataView";
+            this.grpBxDataView.Size = new System.Drawing.Size(669, 219);
+            this.grpBxDataView.TabIndex = 3;
+            this.grpBxDataView.TabStop = false;
+            this.grpBxDataView.Text = "Data View";
             // 
-            // listBox2
+            // dtgrvRprt
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(7, 260);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(344, 173);
-            this.listBox2.TabIndex = 9;
+            this.dtgrvRprt.AllowUserToDeleteRows = false;
+            this.dtgrvRprt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgrvRprt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgrvRprt.Location = new System.Drawing.Point(3, 16);
+            this.dtgrvRprt.Name = "dtgrvRprt";
+            this.dtgrvRprt.ReadOnly = true;
+            this.dtgrvRprt.Size = new System.Drawing.Size(663, 200);
+            this.dtgrvRprt.TabIndex = 0;
             // 
-            // listBox1
+            // grpBxRprtType
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(7, 63);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(344, 173);
-            this.listBox1.TabIndex = 8;
+            this.grpBxRprtType.Controls.Add(this.radioBtnRprtTypeDetaild);
+            this.grpBxRprtType.Controls.Add(this.radioBtnRprtTypeSummery);
+            this.grpBxRprtType.Location = new System.Drawing.Point(318, 19);
+            this.grpBxRprtType.Name = "grpBxRprtType";
+            this.grpBxRprtType.Size = new System.Drawing.Size(94, 122);
+            this.grpBxRprtType.TabIndex = 2;
+            this.grpBxRprtType.TabStop = false;
+            this.grpBxRprtType.Text = "Type Of Report";
             // 
-            // label6
+            // radioBtnRprtTypeDetaild
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(360, 245);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Bookings";
+            this.radioBtnRprtTypeDetaild.AutoSize = true;
+            this.radioBtnRprtTypeDetaild.Location = new System.Drawing.Point(6, 43);
+            this.radioBtnRprtTypeDetaild.Name = "radioBtnRprtTypeDetaild";
+            this.radioBtnRprtTypeDetaild.Size = new System.Drawing.Size(64, 17);
+            this.radioBtnRprtTypeDetaild.TabIndex = 1;
+            this.radioBtnRprtTypeDetaild.TabStop = true;
+            this.radioBtnRprtTypeDetaild.Text = "Detailed";
+            this.radioBtnRprtTypeDetaild.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // radioBtnRprtTypeSummery
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(360, 47);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Events";
+            this.radioBtnRprtTypeSummery.AutoSize = true;
+            this.radioBtnRprtTypeSummery.Location = new System.Drawing.Point(6, 20);
+            this.radioBtnRprtTypeSummery.Name = "radioBtnRprtTypeSummery";
+            this.radioBtnRprtTypeSummery.Size = new System.Drawing.Size(68, 17);
+            this.radioBtnRprtTypeSummery.TabIndex = 0;
+            this.radioBtnRprtTypeSummery.TabStop = true;
+            this.radioBtnRprtTypeSummery.Text = "Summery";
+            this.radioBtnRprtTypeSummery.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // grpBxRprtDate
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 245);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "User information";
+            this.grpBxRprtDate.Controls.Add(this.lblRprtEndDate);
+            this.grpBxRprtDate.Controls.Add(this.dateTimePicker2);
+            this.grpBxRprtDate.Controls.Add(this.lblRprtStartDate);
+            this.grpBxRprtDate.Controls.Add(this.dateTimePicker1);
+            this.grpBxRprtDate.Location = new System.Drawing.Point(97, 19);
+            this.grpBxRprtDate.Name = "grpBxRprtDate";
+            this.grpBxRprtDate.Size = new System.Drawing.Size(215, 122);
+            this.grpBxRprtDate.TabIndex = 1;
+            this.grpBxRprtDate.TabStop = false;
+            this.grpBxRprtDate.Text = "Date";
             // 
-            // label1
+            // lblRprtEndDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 47);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Training done";
+            this.lblRprtEndDate.AutoSize = true;
+            this.lblRprtEndDate.Location = new System.Drawing.Point(7, 77);
+            this.lblRprtEndDate.Name = "lblRprtEndDate";
+            this.lblRprtEndDate.Size = new System.Drawing.Size(103, 13);
+            this.lblRprtEndDate.TabIndex = 3;
+            this.lblRprtEndDate.Text = "Select the End Date";
             // 
-            // button4
+            // dateTimePicker2
             // 
-            this.button4.Location = new System.Drawing.Point(310, 17);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(98, 19);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Bookings";
-            this.button4.UseVisualStyleBackColor = true;
+            this.dateTimePicker2.Location = new System.Drawing.Point(6, 96);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 2;
+            this.dateTimePicker2.Value = new System.DateTime(2022, 9, 28, 0, 0, 0, 0);
             // 
-            // button3
+            // lblRprtStartDate
             // 
-            this.button3.Location = new System.Drawing.Point(208, 17);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 19);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Events";
-            this.button3.UseVisualStyleBackColor = true;
+            this.lblRprtStartDate.AutoSize = true;
+            this.lblRprtStartDate.Location = new System.Drawing.Point(7, 20);
+            this.lblRprtStartDate.Name = "lblRprtStartDate";
+            this.lblRprtStartDate.Size = new System.Drawing.Size(120, 13);
+            this.lblRprtStartDate.TabIndex = 1;
+            this.lblRprtStartDate.Text = "Select the Starting Date";
             // 
-            // button2
+            // dateTimePicker1
             // 
-            this.button2.Location = new System.Drawing.Point(106, 17);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 19);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Client";
-            this.button2.UseVisualStyleBackColor = true;
+            this.dateTimePicker1.Location = new System.Drawing.Point(6, 39);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 9, 28, 0, 0, 0, 0);
             // 
-            // button1
+            // grpBxEvents
             // 
-            this.button1.Location = new System.Drawing.Point(4, 17);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 19);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Admin/Trainer";
-            this.button1.UseVisualStyleBackColor = true;
+            this.grpBxEvents.Controls.Add(this.radioBtnRprtEventAll);
+            this.grpBxEvents.Controls.Add(this.radioBtnRprtEventExams);
+            this.grpBxEvents.Controls.Add(this.radioBtnRprtEventTrain);
+            this.grpBxEvents.Location = new System.Drawing.Point(6, 19);
+            this.grpBxEvents.Name = "grpBxEvents";
+            this.grpBxEvents.Size = new System.Drawing.Size(84, 122);
+            this.grpBxEvents.TabIndex = 0;
+            this.grpBxEvents.TabStop = false;
+            this.grpBxEvents.Text = "Events";
+            // 
+            // radioBtnRprtEventAll
+            // 
+            this.radioBtnRprtEventAll.AutoSize = true;
+            this.radioBtnRprtEventAll.Location = new System.Drawing.Point(6, 66);
+            this.radioBtnRprtEventAll.Name = "radioBtnRprtEventAll";
+            this.radioBtnRprtEventAll.Size = new System.Drawing.Size(72, 17);
+            this.radioBtnRprtEventAll.TabIndex = 2;
+            this.radioBtnRprtEventAll.TabStop = true;
+            this.radioBtnRprtEventAll.Text = "All Events";
+            this.radioBtnRprtEventAll.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnRprtEventExams
+            // 
+            this.radioBtnRprtEventExams.AutoSize = true;
+            this.radioBtnRprtEventExams.Location = new System.Drawing.Point(6, 43);
+            this.radioBtnRprtEventExams.Name = "radioBtnRprtEventExams";
+            this.radioBtnRprtEventExams.Size = new System.Drawing.Size(56, 17);
+            this.radioBtnRprtEventExams.TabIndex = 1;
+            this.radioBtnRprtEventExams.TabStop = true;
+            this.radioBtnRprtEventExams.Text = "Exams";
+            this.radioBtnRprtEventExams.UseVisualStyleBackColor = true;
+            // 
+            // radioBtnRprtEventTrain
+            // 
+            this.radioBtnRprtEventTrain.AutoSize = true;
+            this.radioBtnRprtEventTrain.Location = new System.Drawing.Point(6, 20);
+            this.radioBtnRprtEventTrain.Name = "radioBtnRprtEventTrain";
+            this.radioBtnRprtEventTrain.Size = new System.Drawing.Size(63, 17);
+            this.radioBtnRprtEventTrain.TabIndex = 0;
+            this.radioBtnRprtEventTrain.TabStop = true;
+            this.radioBtnRprtEventTrain.Text = "Training";
+            this.radioBtnRprtEventTrain.UseVisualStyleBackColor = true;
             // 
             // grtBxNewSignUp
             // 
@@ -1472,7 +1555,14 @@
             this.grpBxBooking.PerformLayout();
             this.tabPgReporting.ResumeLayout(false);
             this.grpBxReporting.ResumeLayout(false);
-            this.grpBxReporting.PerformLayout();
+            this.grpBxDataView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgrvRprt)).EndInit();
+            this.grpBxRprtType.ResumeLayout(false);
+            this.grpBxRprtType.PerformLayout();
+            this.grpBxRprtDate.ResumeLayout(false);
+            this.grpBxRprtDate.PerformLayout();
+            this.grpBxEvents.ResumeLayout(false);
+            this.grpBxEvents.PerformLayout();
             this.grtBxNewSignUp.ResumeLayout(false);
             this.grpBxLogin.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1540,7 +1630,6 @@
         private System.Windows.Forms.Label lblSelectEvent;
         private System.Windows.Forms.TextBox txtBxEventID;
         private System.Windows.Forms.Label lblEventID;
-        private System.Windows.Forms.DateTimePicker dtPckrEventStartDate;
         private System.Windows.Forms.TextBox txtBxEventName;
         private System.Windows.Forms.Label lblEventName;
         private System.Windows.Forms.Label lblEventEndTime;
@@ -1570,18 +1659,6 @@
         private System.Windows.Forms.TextBox txtBxBookingID;
         private System.Windows.Forms.Label lblBookingID;
         private System.Windows.Forms.GroupBox grpBxReporting;
-        private System.Windows.Forms.ListBox listBox4;
-        private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox grtBxNewSignUp;
         private System.Windows.Forms.Button btnSignCancel;
         private System.Windows.Forms.GroupBox grpBxLogin;
@@ -1599,6 +1676,25 @@
         private System.Windows.Forms.Label lblBookingName;
         private System.Windows.Forms.ListBox lstBxBookAttendees;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
+        private System.Windows.Forms.TextBox txtBxEventDiscrip;
+        private System.Windows.Forms.Button btnBookDelet;
+        private System.Windows.Forms.Label lblEventDiscr;
+        private System.Windows.Forms.DateTimePicker dtPckrEventStartDate;
+        private System.Windows.Forms.Button btnRprtGenerate;
+        private System.Windows.Forms.GroupBox grpBxDataView;
+        private System.Windows.Forms.DataGridView dtgrvRprt;
+        private System.Windows.Forms.GroupBox grpBxRprtType;
+        private System.Windows.Forms.RadioButton radioBtnRprtTypeDetaild;
+        private System.Windows.Forms.RadioButton radioBtnRprtTypeSummery;
+        private System.Windows.Forms.GroupBox grpBxRprtDate;
+        private System.Windows.Forms.Label lblRprtEndDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label lblRprtStartDate;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.GroupBox grpBxEvents;
+        private System.Windows.Forms.RadioButton radioBtnRprtEventAll;
+        private System.Windows.Forms.RadioButton radioBtnRprtEventExams;
+        private System.Windows.Forms.RadioButton radioBtnRprtEventTrain;
     }
 }
 
